@@ -48,7 +48,7 @@ export class MyInput extends Component {
 
 const styles = StyleSheet.create({
   container : {
-    alignSelf: 'flex-start',
+    //alignSelf: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
   },

@@ -141,7 +141,7 @@ export class RegisterForm extends Component {
   renderSearchItem = ({item,index}) => {
     return (<ListItem
       {...item}
-      containerStyle={styles.searchItemContainer}
+      containerStyle={{}}
       onPress={() => this.store.selectMajor(item.title)}
     />);
   }
@@ -232,8 +232,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   searchList: {
-  },
-  searchItemContainer: {
-    //height: itemHeight,
   },
 });
