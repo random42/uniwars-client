@@ -3,7 +3,7 @@ import PhoneNumber from 'awesome-phonenumber';
 import { MAJORS } from '../constants';
 
 const regex = {
-  username: /^(?=(\w|\?|\.)+)(?!).{3,15}$/i
+  username: /^(?=(\w|\?|\.)+)(?!).{3,15}$/i,
   firstName : /^[a-z]+(\s+[a-z]+)*$/i,
   lastName : /^[a-z]+(\s+[a-z]+)*$/i,
   email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

@@ -8,6 +8,10 @@ import { RankList, Slider } from '../components';
 @inject('store') @observer
 export class Rank extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     let rank = this.props.store.rank.getRankings(this.props.which);
     return (

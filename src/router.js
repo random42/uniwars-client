@@ -77,9 +77,9 @@ export class MyRouter extends Component {
           </Tabs>
           <Scene key="login" component={Login} />
           <Scene key="intro" component={Intro} />
-          <Stack key="register" initial hideNavBar>
+          <Stack key="register" hideNavBar>
             <Scene key="register-email" component={RegisterEmail}/>
-            <Scene key="register-form" initial component={RegisterForm} />
+            <Scene key="register-form" component={RegisterForm} />
             <Scene key="register-type" component={RegisterType}/>
           </Stack>
           <Stack key="game" hideNavBar>
