@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Button from 'react-native-button';
-import { inject, observer } from 'mobx-react/native';
 import { GAME_QUESTIONS_NUMBER } from '../../constants';
+import PropTypes from 'prop-types';
 
-@inject('store') @observer
 export class GameQuestion extends Component {
+
+  static propTypes = {
+    question: PropTypes.string,
+    answers: PropTypes.arrayOf(PropTypes.string),
+    category: PropTypes.string,
+  }
 
   constructor(props) {
     super(props);
@@ -14,9 +19,9 @@ export class GameQuestion extends Component {
     this.question = this.game.questions[this.props.index];
   }
 
-  nextQuestion() {
-    Actions.push(Actions.currentScene,{index: this.props.index+1});
-  }
+  // nextQuestion() {
+  //   Actions.push(Actions.currentScene,{index: this.props.index+1});
+  // }
 
   sendAnswer(answer) {
     // TODO animation
@@ -36,10 +41,10 @@ export class GameQuestion extends Component {
     );
   }
 
-  renderOption(optionIndex) {
-    let _onPress = () => { this.sendAnswer(optionIndex)};
-    let key = 'option'+optionIndex;
-    let option = this.question[key];
+  renderOption(index) {
+    let {answers} = this.props;
+    let answer = answers[index];
+    let _onPress = () => { this.sendAnswer(answer)};
     return (
       <Button onPress={_onPress}
         containerStyle={styles.optionContainer} >
@@ -52,12 +57,12 @@ export class GameQuestion extends Component {
     return (
       <View style={styles.optionsContainer}>
         <View style={styles.halfOptions}>
+          {this.renderOption(0)}
           {this.renderOption(1)}
-          {this.renderOption(2)}
         </View>
         <View style={styles.halfOptions}>
+          {this.renderOption(2)}
           {this.renderOption(3)}
-          {this.renderOption(4)}
         </View>
       </View>
     );

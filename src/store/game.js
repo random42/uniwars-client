@@ -165,7 +165,6 @@ let testQuestions = [
 
 export class GameStore {
 
-
   @observable gameOn = false;
   @observable type = 'team'; // ['solo','team']
   @observable myTeam = testMyTeam;
