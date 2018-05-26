@@ -1,5 +1,5 @@
 let API = {
-  USERS :  {
+  USER :  {
     REGISTER : {
       method: 'post',
       url: '/users/register',
@@ -83,16 +83,9 @@ let API = {
   },
 
   GAME : {
-    SEARCH : {
-      method: 'post',
-      url: 'game/search',
-      data: {
-        gameType: 'solo',
-      }
-    },
   },
 
-  UNIS : {
+  UNI : {
     GET: {
       url: '/unis',
       params: {
@@ -116,7 +109,7 @@ let API = {
     }
   },
 
-  TEAMS : {
+  TEAM : {
     GET: {
       url: 'teams/',
       params: {
@@ -220,6 +213,6 @@ let API = {
       }
     }
   }
-};
+}
 
 module.exports = API;

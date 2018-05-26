@@ -7,7 +7,7 @@ import {LoginStore} from './login';
 import {ApiStore} from './api';
 
 
-export default let store = {
+let store = {
   chat: new ChatStore(),
   register: new RegisterStore(),
   rank: new RankStore(),
@@ -16,3 +16,5 @@ export default let store = {
   login: new LoginStore(),
   api: new ApiStore()
 }
+
+export default store

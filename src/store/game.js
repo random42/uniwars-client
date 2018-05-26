@@ -165,18 +165,15 @@ let testQuestions = [
 
 export class GameStore {
 
-  @observable gameOn = false;
-  @observable type = 'team'; // ['solo','team']
-  @observable myTeam = testMyTeam;
-  @observable enemyTeam = testEnemyTeam;
-  @observable enemy = testEnemy;
-  @observable questions = testQuestions;
-
-  @action endGame() {
-    gameOn = false;
+  constructor() {
+    this.searching = false; // can be any game type
+    this.currentGame = null;
+    this.games = [];
   }
 
-  @action findGame(type) {
-    this.type = type;
+  @observable playing = false;
+
+  @action removeGame(_id) {
+
   }
 }

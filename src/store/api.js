@@ -1,12 +1,10 @@
 import { observable, action, computed, toJS } from 'mobx';
 import { NetInfo } from 'react-native';
-let debug = require('debug')('store:api');
 
 export class ApiStore {
 
   constructor() {
-    NetInfo.isConnected.fetch.then((conn) => {
-      debug('isConnected =>',conn);
+    NetInfo.isConnected.fetch().then((conn) => {
       this.setInternet(conn);
     })
     NetInfo.addEventListener('connectionChange',({type, effectiveType}) => {
@@ -21,25 +19,19 @@ export class ApiStore {
   // is the device connected to the internet?
   @observable internet;
 
-  // connected sockets
-  @observable sockets = {
-    main: false,
-    chat: false,
-    game: false
-  }
+  // is the socket connected?
+  @observable socket = false;
 
   // is the user logged in?
   @observable auth = false;
 
   @action setInternet(boolean) {
     this.internet = boolean;
-    debug('internet =>', boolean);
+    console.log("Internet =>", boolean);
   }
 
-  @action setSockets(connections = {}) {
-    for (let key in connections) {
-      this.sockets[key] = connections[key];
-    }
+  @action setSocket(state) {
+    this.socket = state;
   }
 
   @action setAuth(boolean) {

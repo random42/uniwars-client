@@ -8,10 +8,10 @@ export default let socket = io(server.base_url, {
 });
 
 socket.on('connect', () => {
-  if (!store.auth) return;
+  //if (!store.auth) return;
   socket.emit('auth', {});
   socket.on('auth' () => {
-    store.setSockets({main: true})
+    store.setSocket(true)
   })
 })
 

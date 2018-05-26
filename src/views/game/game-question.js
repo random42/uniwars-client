@@ -15,8 +15,6 @@ export class GameQuestion extends Component {
 
   constructor(props) {
     super(props);
-    this.game = this.props.store.game;
-    this.question = this.game.questions[this.props.index];
   }
 
   // nextQuestion() {
@@ -26,17 +24,12 @@ export class GameQuestion extends Component {
   sendAnswer(answer) {
     // TODO animation
     console.log(answer === this.question.answers ? 'Correct!' : 'Wrong!');
-    if (this.props.index === GAME_QUESTIONS_NUMBER-1) {
-      // TODO finish game
-    } else {
-      this.nextQuestion();
-    }
   }
 
   renderQuestion() {
     return (
       <View style={styles.questContainer}>
-        <Text>{this.question.question}</Text>
+        <Text>{this.props.question}</Text>
       </View>
     );
   }

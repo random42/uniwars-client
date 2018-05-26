@@ -1,19 +1,5 @@
 let store = require('../store').api;
-
-export default const Api = {
-  user: {
-
-  },
-
-  uni: {
-
-  },
-
-  team: {
-
-  },
-
-  game: {
-
-  }
-}
+export User from './user'
+export Team from './team'
+export Uni from './uni'
+export Game from './game'

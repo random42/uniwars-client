@@ -10,10 +10,10 @@ import {Provider} from 'mobx-react/native';
 import * as mobx from 'mobx';
 import {MyRouter} from './src/router';
 
+
 console.disableYellowBox = true;
 mobx.useStrict(true);
 
-//loadLanguage('en-US').then(() => console.log('language'));
 
 
 type Props = {};

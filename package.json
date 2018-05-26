@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "exp start",
+    "dev": "exp start --lan"
+  },
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
@@ -6,6 +10,7 @@
     "awesome-phonenumber": "^2.2.5",
     "axios": "^0.18.0",
     "expo": "^26.0.0",
+    "lodash": "^4.17.10",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.2",
     "prop-types": "^15.6.0",
