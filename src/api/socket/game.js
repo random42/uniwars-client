@@ -1,22 +1,23 @@
 import io from 'socket.io-client';
-let store = require('../store');
+import store from '../../store';
+import { game as socket } from './main';
 let server = require('../server.json');
 
-export default let socket = io(server.base_url + '/game', {
-  autoConnect: false,
-  reconnection: true
-});
-
 socket.on('connect', () => {
-  socket.on('new_game', (_id, type) => {
-    if (store.game.searching === type) {
-      socket.emit('join', _id)
-    }
-    else {
-    }
-  })
+  store.api.setSocket({game: true});
 })
 
 socket.on('disconnect', () => {
-
+  store.api.setSocket({game: false});
 })
+
+socket.on('new_game', (_id, type) => {
+  if (store.game.searching === type) {
+    socket.emit('join', _id)
+  }
+  else {
+  }
+})
+
+
+export default socket

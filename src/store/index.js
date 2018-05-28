@@ -15,6 +15,6 @@ let store = {
   game: new GameStore(),
   login: new LoginStore(),
   api: new ApiStore()
-}
+};
 
 export default store

@@ -9,12 +9,14 @@ import store from './src/store';
 import {Provider} from 'mobx-react/native';
 import * as mobx from 'mobx';
 import {MyRouter} from './src/router';
-
+import * as Api from './src/api';
 
 console.disableYellowBox = true;
 mobx.useStrict(true);
 
-
+Api.socket.connect().catch((err) => {
+  console.log(err);
+})
 
 type Props = {};
 export default class App extends Component<Props> {

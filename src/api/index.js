@@ -1,5 +1,5 @@
-let store = require('../store').api;
-export User from './user'
-export Team from './team'
-export Uni from './uni'
-export Game from './game'
+export user from './user'
+export team from './team'
+export uni from './uni'
+export game from './game'
+export * as socket from './socket'

@@ -1,6 +1,5 @@
 import { observable, action, computed, toJS } from 'mobx';
 import PhoneNumber from 'awesome-phonenumber';
-import {UserApi} from '../api';
 
 const minUserLength = 4;
 

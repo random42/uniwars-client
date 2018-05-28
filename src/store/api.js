@@ -20,7 +20,11 @@ export class ApiStore {
   @observable internet;
 
   // is the socket connected?
-  @observable socket = false;
+  @observable socket = {
+    main: false,
+    chat: false,
+    game: false
+  };
 
   // is the user logged in?
   @observable auth = false;
@@ -30,11 +34,15 @@ export class ApiStore {
     console.log("Internet =>", boolean);
   }
 
-  @action setSocket(state) {
-    this.socket = state;
+  @action setSocket(state = {}) {
+    for (let i in state) {
+      this.socket[i] = state[i];
+    }
+    console.log("Socket =>", state);
   }
 
   @action setAuth(boolean) {
     this.auth = boolean;
+    console.log("Auth =>", boolean);
   }
 }
