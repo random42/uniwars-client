@@ -1,10 +1,12 @@
-import main, {game, chat, manager} from './main';
+import main, { manager} from './main';
+import chat from './chat';
+import game from './game';
 import store from '../../store';
 import _ from 'lodash/core';
 import { when } from 'mobx';
 
 
-async function connect() {
+function connect() {
   main.open();
   return when(() => {
     let connections = store.api.socket;

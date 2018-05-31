@@ -8,6 +8,7 @@ let socket = io(server.base_url, {
 });
 
 export default socket
+
 export let manager = socket.io;
 
 export let chat = manager.socket('/chat', {
@@ -23,7 +24,6 @@ export let game = manager.socket('/game', {
 socket.on('connect', () => {
   //if (!store.auth) return;
   socket.emit('auth', {_id: "5b03cb5391e852092f45b981"});    /*TODO put auth*/
-  console.log('auth emitted');
   socket.on('auth', () => {
     store.api.setSocket({main: true});
     game.open();
@@ -32,5 +32,5 @@ socket.on('connect', () => {
 })
 
 socket.on('disconnect', () => {
-  api.store.setSocket({main: false});
+  store.api.setSocket({main: false});
 })

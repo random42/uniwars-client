@@ -12,4 +12,5 @@ socket.on('disconnect', () => {
   store.api.setSocket({chat: false});
 })
 
-export default socket
+
+export default socket;

@@ -12,10 +12,12 @@ import {MyRouter} from './src/router';
 import * as Api from './src/api';
 
 console.disableYellowBox = true;
-mobx.useStrict(true);
 
-Api.socket.connect().catch((err) => {
-  console.log(err);
+
+Api.socket.connect().then(() => {
+  console.log("Socket connected");
+}).catch((err) => {
+  console.log(err.message);
 })
 
 type Props = {};

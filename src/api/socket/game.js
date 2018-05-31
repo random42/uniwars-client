@@ -19,5 +19,4 @@ socket.on('new_game', (_id, type) => {
   }
 })
 
-
-export default socket
+export default socket;
