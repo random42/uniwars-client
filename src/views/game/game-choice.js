@@ -1,28 +1,18 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Image, Text, StyleSheet} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Button from 'react-native-button';
-
+import { Dimensions } from 'react-native';
+import Carousel from "react-native-carousel-control";
+import { Font } from "expo"
 
 export class GameChoice extends Component {
-
+  state = {
+    currentIndex: 0,
+  };
+  
   play() {
     Actions.push('game-match-preview');
-  }
-
-  playAlone() {
-  }
-
-  playUni() {
-
-  }
-
-  playTeam() {
-
-  }
-
-  createTeam() {
-
   }
 
   renderButton(text,func) {
@@ -35,44 +25,65 @@ export class GameChoice extends Component {
     );
   }
 
-  render() {
+
+
+  render = () => {
+    // center items on screen
+    const { width } = Dimensions.get('window');
+    /* const contentOffset = (width - View.WIDTH) / 2; */
+
     return (
       <View style={styles.container}>
-        <View style={styles.half}>
-          {this.renderButton('Play alone',this.playAlone)}
-          {this.renderButton('Play for your uni',this.playUni)}
-        </View>
-        <View style={styles.half}>
-          {this.renderButton('Create your team',this.createTeam)}
-          {this.renderButton('Play with your team',this.playTeam)}
-        </View>
+        <Carousel currentPage={1}>
+
+          <View style={styles.carouselPage}>
+            <View style={styles.head}>
+              <Image style={{borderRadius: 20}} source={require('./../../../assets/gameChoice_randomTeam.jpg')} />
+            </View>
+            <View style={styles.bottom}>
+              <Text style={styles.baseText}>Gioca in singolo</Text>
+              <Text style={styles.titleText}>Allenati contro </Text>
+            </View>
+          </View>
+
+        </Carousel>
       </View>
     );
-  }
+  };
 }
 
+
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    half: {
-      backgroundColor: 'yellow',
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-around',
-      alignItems: 'center',
-    },
-    buttonContainer: {
-      margin: 30,
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: 150,
-      height:100,
-      overflow: 'hidden',
-      borderRadius:4,
-      backgroundColor: 'orange'
-    },
-    buttonText: {
-      fontSize: 20
-    }
+  container: {
+    flex: 1,
+    backgroundColor: "pink"
+  },
+  carouselPage: {
+    borderRadius: 20,
+    marginTop: 50,
+    marginBottom: 50,
+    marginLeft: 20,
+    marginRight: 20,
+    flex: 1,
+    backgroundColor: "yellow",
+    flexDirection: "column",
+  },
+  head: {
+    borderRadius: 20,
+    flex:1,
+    backgroundColor: "black",
+  },
+  bottom: {
+    borderRadius: 20,
+    flex:1,
+    backgroundColor: "white"
+  },
+  baseText: {
+    /* fontFamily: 'arial', */
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
 });
