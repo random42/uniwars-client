@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from "react-native";
-import {Actions} from "react-native-router-flux";
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from "react-native";
+import { Actions } from "react-native-router-flux";
 import Button from 'react-native-button';
 import { inject, observer } from 'mobx-react/native';
 import { RankList, Slider } from '../components';
+import Carousel from "react-native-carousel-control";
 
 @inject('store') @observer
 export class Rank extends Component {
@@ -13,11 +14,13 @@ export class Rank extends Component {
   }
 
   render() {
-    let rank = this.props.store.rank.getRankings(this.props.which);
     return (
-      <View style={styles.container}>
-        <RankList containerStyle={styles.gridContainer} head={rank.head} data={rank.data}/>
-      </View>
+      <Carousel pageStyle={ { margin: 20, backgroundColor: "white", borderRadius: 5}}>
+        <RankList containerStyle={styles.gridContainer} data={[]}/>
+        <Text>Hello</Text>
+        <Text>World!</Text>
+        <Text>From carousel</Text>
+      </Carousel>
     );
   }
 }
@@ -28,7 +31,6 @@ const styles = StyleSheet.create({
   },
   gridContainer: {
     flex: 1,
-    //margin: 20,
     backgroundColor: 'red'
   },
 });

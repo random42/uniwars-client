@@ -64,15 +64,7 @@ export class MyRouter extends Component {
             path={"/tabs"}>
             <Scene key="home" component={Home} icon={tabIcons[0]}/>
             <Scene key="chat" component={Chat} icon={tabIcons[1]}/>
-            <Tabs key="rank"
-              animationEnabled={true}
-              tabBarPosition="top"
-              tabBarOnPress={this.changeRankTab}
-              icon={tabIcons[2]}>
-              <Scene key="rank-players" component={() => <Rank which="players"/>}/>
-              <Scene key="rank-teams" component={() => <Rank which="teams"/>}/>
-              <Scene key="rank-unis" component={() => <Rank which="unis"/>}/>
-            </Tabs>
+            <Scene key="rank" component={Rank} icon={tabIcons[2]} />
             <Scene key="profile" component={Profile} icon={tabIcons[3]}/>
           </Tabs>
           <Scene key="login" component={Login} />
