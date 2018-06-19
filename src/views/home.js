@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     playButtonText: {
         fontSize: 30,
         color: '#FFFFFF',
-        fontFamily: 'sans-serif',
+        /* fontFamily: 'sans-serif', */
         fontWeight: 'bold',
     },
     scroll: {
