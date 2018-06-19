@@ -19,12 +19,20 @@ export class ApiStore {
   // is the device connected to the internet?
   @observable internet;
 
-  // is the socket connected?
+  // connected sockets
   @observable socket = {
     main: false,
     chat: false,
     game: false
   };
+
+  @computed get isSocketConnected() {
+    for (let i in this.socket) {
+      if (!this.socket[i])
+        return false;
+    }
+    return true;
+  }
 
   // is the user logged in?
   @observable auth = false;
@@ -38,7 +46,6 @@ export class ApiStore {
     for (let i in state) {
       this.socket[i] = state[i];
     }
-    console.log("Socket =>", state);
   }
 
   @action setAuth(boolean) {
