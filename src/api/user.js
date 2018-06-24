@@ -41,8 +41,27 @@ const user = {
   },
   async deleteAccount({password}) {
     let req = API.USER.DELETE_ACCOUNT;
-    let req.password
-  }
+    let req.data = {password};
+    let res = await axios(req);
+  },
+  async setPicture(buffer) {
+    let req = API.USER.SET_PICTURE;
+    let req.data = buffer;
+    let res = await axios(req);
+  },
+  getPicture({_id, size = "small"}) { // medium, large
+    let url = axios.defaults.baseURL;
+    url += API.USER.GET_PICTURE.url;
+    url += "?_id=" + _id + "&size=" + size;
+    return url;
+  },
+
+  async challenge(user) {
+    let req = API.USER.CHALLENGE;
+    let req.params = {to: user};
+    let res = await axios(req);
+  },
+  
 }
 
 

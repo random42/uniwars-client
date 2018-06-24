@@ -35,26 +35,26 @@ const API = {
     },
     SET_PICTURE :  {
       method: 'put',
-      url: 'users/picture',
+      url: '/users/picture',
       headers: {'Content-Type': 'application/octet-stream'}
       // data: picture (buffer)
     },
     GET_PICTURE : {
-      url : 'users/picture',
+      url : '/users/picture',
       // params: {
       //   _id,size (small,medium,large)
       // }
     },
     CHALLENGE: {
       method: 'put',
-      url: 'users/challenge',
+      url: '/users/challenge',
       // params: {
       //   to: "_id"
       // }
     },
     RESPOND_CHALLENGE: {
       method: 'put',
-      url: 'users/respond-challenge',
+      url: '/users/respond-challenge',
       params: {
         response: 'y',
         user: '_id'
@@ -62,14 +62,14 @@ const API = {
     },
     ADD_FRIEND: {
       method: 'put',
-      url: 'users/add-friend',
+      url: '/users/add-friend',
       params: {
         to: '_id'
       }
     },
     RESPOND_FRIEND_REQUEST: {
       method: 'put',
-      url: 'users/respond-friend-request',
+      url: '/users/respond-friend-request',
       params: {
         response: 'y',
         user: '_id'
@@ -77,7 +77,7 @@ const API = {
     },
     GET_NEWS: {
       method: 'put',
-      url: 'users/get-news',
+      url: '/users/get-news',
     }
   },
 
@@ -137,6 +137,7 @@ const API = {
       // params: {
       //   team: '_id',
       //   enemy: '_id',
+      //   response: "y",
       // }
     },
     CREATE: {
