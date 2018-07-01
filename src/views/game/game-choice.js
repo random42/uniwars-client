@@ -38,11 +38,11 @@ export class GameChoice extends Component {
 
           <View style={styles.carouselPage}>
             <View style={styles.head}>
-              <Image style={{borderRadius: 20}} source={require('./../../../assets/gameChoice_randomTeam.jpg')} />
+              <Image source={require('./../../../assets/gameChoice_randomTeam.jpg')} style={styles.backgroundImage} />
             </View>
             <View style={styles.bottom}>
-              <Text style={styles.baseText}>Gioca in singolo</Text>
-              <Text style={styles.titleText}>Allenati contro </Text>
+              <Text style={styles.titleText}>Gioca in singolo</Text>
+              <Text style={styles.baseText}>Sfida altri giocatori in sfide uno contro uno</Text>
             </View>
           </View>
 
@@ -60,30 +60,39 @@ const styles = StyleSheet.create({
     backgroundColor: "pink"
   },
   carouselPage: {
-    borderRadius: 20,
     marginTop: 50,
     marginBottom: 50,
     marginLeft: 20,
     marginRight: 20,
     flex: 1,
-    backgroundColor: "yellow",
     flexDirection: "column",
   },
   head: {
-    borderRadius: 20,
     flex:1,
-    backgroundColor: "black",
+  },
+  backgroundImage:{
+    width: '100%',
+    height: '100%',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   bottom: {
-    borderRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
     flex:1,
-    backgroundColor: "white"
-  },
-  baseText: {
-    /* fontFamily: 'arial', */
+    backgroundColor: "white",
+    alignItems: 'center',
   },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
+    marginTop: 35,
+  },
+  baseText: {
+    fontSize: 12,
+    marginTop: 15,
+    width: 150,
+    color: 'grey',
+    textAlign: 'center',
   },
 });
