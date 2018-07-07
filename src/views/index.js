@@ -4,3 +4,4 @@ export {Chat} from './chat';
 export {Profile} from './profile';
 export {Rank} from './rank';
 export {Intro} from './intro';
+export {User} from './user';

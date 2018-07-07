@@ -6,7 +6,8 @@ import {
   Chat,
   Rank,
   Profile,
-  Intro
+  Intro,
+  User
 } from './views';
 import {
   GameChoice,
@@ -80,6 +81,7 @@ export class MyRouter extends Component {
             <Scene key="game-match-preview" component={GameMatchPreview} />
             <Scene key="game-question" component={GameQuestion} index={0}/>
           </Stack>
+          <Scene key="user" initial component={User} />
         </Scene>
         </Lightbox>
       </Router>

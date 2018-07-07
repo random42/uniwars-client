@@ -55,7 +55,6 @@ const user = {
     url += "?_id=" + _id + "&size=" + size;
     return url;
   },
-
   async challenge(user) {
     let req = API.USER.CHALLENGE;
     req.params = {to: user};
