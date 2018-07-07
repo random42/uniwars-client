@@ -2,6 +2,7 @@ import { observable, action, computed, toJS } from 'mobx';
 
 export class ProfileStore {
   @observable _id = 0;
+  @observable username = 'random';
   @observable name = 'Roberto Sero';
   @observable major = 'Computer Science';
   @observable uni = {
