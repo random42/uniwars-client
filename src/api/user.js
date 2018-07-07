@@ -41,12 +41,12 @@ const user = {
   },
   async deleteAccount({password}) {
     let req = API.USER.DELETE_ACCOUNT;
-    let req.data = {password};
+    req.data = {password};
     let res = await axios(req);
   },
   async setPicture(buffer) {
     let req = API.USER.SET_PICTURE;
-    let req.data = buffer;
+    req.data = buffer;
     let res = await axios(req);
   },
   getPicture({_id, size = "small"}) { // medium, large
@@ -58,10 +58,10 @@ const user = {
 
   async challenge(user) {
     let req = API.USER.CHALLENGE;
-    let req.params = {to: user};
+    req.params = {to: user};
     let res = await axios(req);
   },
-  
+
 }
 
 

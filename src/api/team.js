@@ -5,45 +5,45 @@ const team = {
 
   async create(name) {
     let req = API.TEAM.CREATE;
-    let req.data = {name};
+    req.data = {name};
     let res = await axios(req);
     return res.data;
   },
 
   async delete(team) {
     let req = API.TEAM.DELETE;
-    let req.params = {team};
+    req.params = {team};
     let res = await axios(req);
-  }
+  },
 
   async get(_id) {
     let req = API.TEAM.GET;
-    let req.params = {_id};
+    req.params = {_id};
     let res = await axios(req);
     return res.data;
   },
 
   async invite({team, invited}) {
     let req = API.TEAM.INVITE;
-    let req.params = arguments[0];
+    req.params = arguments[0];
     let res = await axios(req);
   },
 
   async respondInvite({team, response}) {
     let req = API.TEAM.RESPOND_INVITE;
-    let req.params = arguments[0];
+    req.params = arguments[0];
     let res = await axios(req);
   },
 
   async challenge({team, enemy}) {
     let req = API.TEAM.CHALLENGE;
-    let req.params = arguments[0];
+    req.params = arguments[0];
     let res = await axios(req);
   },
 
   async respondChallenge({team, enemy, response}) {
     let req = API.TEAM.RESPOND_CHALLENGE;
-    let req.params = arguments[0];
+    req.params = arguments[0];
     let res = await axios(req);
   },
 

@@ -6,7 +6,7 @@ export class ApiStore {
   constructor() {
     NetInfo.isConnected.fetch().then((conn) => {
       this.setInternet(conn);
-    })
+    }).catch((err) => console.log(err));
     NetInfo.addEventListener('connectionChange',({type, effectiveType}) => {
       let connected =
         type in ['none','unknown'] ? false : true

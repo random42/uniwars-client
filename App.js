@@ -14,12 +14,6 @@ import * as Api from './src/api';
 console.disableYellowBox = true;
 
 
-Api.socket.connect().then(() => {
-  console.log("Socket connected");
-}).catch((err) => {
-  console.log(err.message);
-})
-
 type Props = {};
 export default class App extends Component<Props> {
   render() {
