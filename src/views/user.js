@@ -4,7 +4,8 @@ import {Actions} from "react-native-router-flux";
 import PropTypes from 'prop-types';
 import store from '../store';
 import { Loading, CircularStats } from '../components';
-import {Avatar, Text} from 'react-native-elements';
+import {Avatar, Text, Icon} from 'react-native-elements';
+import { inject, observer } from 'mobx-react/native';
 import * as Api from '../api';
 
 const TEST = {
@@ -104,8 +105,8 @@ const buttons = [
     key: "friend-request",
     text: "Add friend",
     icon: {
-      type: '',
-      name: ''
+      type: 'material-icon',
+      name: 'person-add',
     },
     style: {
 
@@ -115,8 +116,8 @@ const buttons = [
     key: "block-user",
     text: "Block user",
     icon: {
-      type: '',
-      name: ''
+      type: 'entypo',
+      name: 'block'
     },
     style: {
 
@@ -125,8 +126,8 @@ const buttons = [
     key: "challenge-user",
     text: "Challenge",
     icon: {
-      type: '',
-      name: ''
+      type: 'material-community',
+      name: 'sword-cross'
     },
     style: {
 
@@ -135,8 +136,8 @@ const buttons = [
     key: "chat-user",
     text: "Chat",
     icon: {
-      type: '',
-      name: ''
+      type: 'entypo',
+      name: 'chat'
     },
     style: {
 
@@ -144,6 +145,7 @@ const buttons = [
   }
 ]
 
+@inject('store') @observer
 export class User extends Component {
 
   constructor(props) {
@@ -163,8 +165,22 @@ export class User extends Component {
   componentDidMount() {
   }
 
+  renderOption(item, index, arr) {
+    return (
+      <Icon
+        key={item.key}
+        {...item.icon}
+        size={30}
+        onPress={() => null}
+        underlayColor="yellow"
+        raised
+      />
+    )
+  }
+
   renderUser() {
     let {user} = this.state;
+    let {profile} = this.props.store;
     return (
       <View style={styles.container}>
         <View id="pic-name"
@@ -183,7 +199,7 @@ export class User extends Component {
           stats={user.stats.map((i) => ({name: i.category, hit: i.hit, miss: i.miss}))}
         />
         <View id="options" style={styles.optionsView}>
-
+          {buttons.map(this.renderOption)}
         </View>
       </View>
     )
@@ -210,7 +226,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   topView: {
-    flex: 3,
+    flex: 4,
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
@@ -220,11 +236,14 @@ const styles = StyleSheet.create({
     //height: 150
   },
   statsView: {
-    flex: 3,
-    backgroundColor: "blue",
+    flex: 2.5,
+    backgroundColor: "#e4a8f9",
   },
   optionsView: {
-    flex: 3,
-    backgroundColor: "red",
+    flex: 1.5,
+    backgroundColor: "#99ea86",
+    flexDirection: "row",
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 });

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   },
   pageStyle: {
     flex: 1,
-    backgroundColor: "yellow",
+    // backgroundColor: "yellow",
     borderRadius: 5,
     justifyContent: 'space-around',
     alignItems: 'center'
