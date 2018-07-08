@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Dimensions} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Button from 'react-native-button';
-import { GameTimer} from '../../components';
+import { GameTimer, GameHeader } from '../../components';
 import { GAME_QUESTIONS_NUMBER } from '../../constants';
 import PropTypes from 'prop-types';
 
 const TEST = {
-  question: "What colour is Napoleon's white horse?",
+  question: "What color is Napoleon's white horse?",
   answers: ["Black","Red","White","Yellow"],
   category: "General",
   correctAnswer: "White"
@@ -73,18 +73,14 @@ export class GameQuestion extends Component {
     );
   }
 
-  renderTop() {
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-        </View>
+        <GameHeader containerStyle={styles.header}/>
         <View style={styles.content}>
+          <GameTimer size={70} containerStyle={styles.timerView}/>
           {this.renderQuestion()}
           {this.renderAnswers()}
-          <GameTimer containerStyle={styles.timerView}/>
         </View>
         <View style={styles.ads}>
           <Text style={{fontSize: 25,fontWeight: 'bold',color: 'white'}}>PUBBLICITA</Text>
@@ -99,12 +95,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flex: 1,
     backgroundColor: 'red',
   },
   content: {
     flex: 6,
-    margin: 20,
     justifyContent: 'space-around',
     alignItems: 'center'
   },
@@ -114,10 +108,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  timerView: {
+    flex: 1.8,
+    top: -10
+  },
   questionView: {
     flex: 2,
     marginBottom: 20,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#99ea86'
   },
@@ -125,9 +122,6 @@ const styles = StyleSheet.create({
     flex: 4,
     justifyContent: 'space-around',
     alignItems: 'center'
-  },
-  timerView: {
-    flex: 2,
   },
   answerView: {
     flex: 1,
@@ -144,7 +138,8 @@ const styles = StyleSheet.create({
     fontWeight: 'normal'
   },
   questionText: {
-    fontSize: 18,
-    fontWeight: 'normal'
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
 });

@@ -8,98 +8,6 @@ import {Avatar, Text, Icon} from 'react-native-elements';
 import { inject, observer } from 'mobx-react/native';
 import * as Api from '../api';
 
-const TEST = {
-  "_id": "5abbd98270534c2bf947416c",
-  "username": "random",
-  "email": "roberto.sero@edu.unito.it",
-  "first_name": "Roberto",
-  "last_name": "Sero",
-  "full_name": "Roberto Sero",
-  "uni": {
-      "_id": "5a3dac7dfaaa577114d0cfaf",
-      "name": "University of Turin",
-      "alpha_two_code": "IT"
-  },
-  "major": {
-    "FOD1P": 1100,
-    "name": "GENERAL AGRICULTURE",
-    "category": "Agriculture & Natural Resources"
-  },
-  "perf": {
-    "rating": 2650,
-    "rd": 100, // rating deviation
-    "vol": 0.06, // volatility
-  },
-  "stats": [{
-      "category": "Engineering",
-      "hit": 3425,
-      "miss": 3332
-    },{
-      "category": "Biology & Life Science",
-      "hit": 4448,
-      "miss": 1234
-    },{
-      "category": "Arts",
-      "hit": 123,
-      "miss": 2123
-    },{
-      "category": "Business",
-      "hit": 4555,
-      "miss": 3333
-    },{
-      "category": "Education",
-      "hit": 3848,
-      "miss": 1292
-    },{
-      "category": "Health",
-      "hit": 3848,
-      "miss": 8999
-    },{
-      "category": "Humanities & Liberal Arts",
-      "hit": 10000,
-      "miss": 1000
-  }],
-  "picture": {
-    "small": "https://avatars2.githubusercontent.com/u/24995370?s=460&v=4",
-    "medium": "https://avatars2.githubusercontent.com/u/24995370?s=460&v=4",
-    "large": "https://avatars2.githubusercontent.com/u/24995370?s=460&v=4",
-  },
-  "teams": [
-  ],
-  "games": {
-    "solo": {
-      "wins": 123,
-      "losses": 123,
-      "draws": 44
-    },
-    "squad": {},
-    "team": {}
-  },
-  "activity": [{
-    "interval": {
-      "start": 125254254,
-      "end": 134452435,
-    },
-    "games": {
-      "solo": 23,
-      "squad": 12,
-      "team": 1
-    },
-    "ratings": [1234,1255,5435],
-  }],
-  "news": [{
-    "type": "team_invitation", // team_challenge, challenge, friend_request, team_invitation
-    "user": "_id",
-    "team": "_id", // if necessary
-    "created_at": Date.now()
-  }],
-  "rank": 324,
-  "online_time": 796,
-  "online": true,
-  "playing": true,
-  "friends": ["_ids"]
-}
-
 const buttons = [
   {
     key: "friend-request",
@@ -145,9 +53,85 @@ const buttons = [
   }
 ]
 
+const TEST = {
+  "_id": {
+      "$oid": "5abbd98270534c2bf947416c"
+  },
+  "username": "random",
+  "email": "roberto.sero@edu.unito.it",
+  "first_name": "Roberto",
+  "last_name": "Sero",
+  "full_name": "Roberto Sero",
+  "uni": {
+      "_id": {
+          "$oid": "5a3dac7dfaaa577114d0cfaf"
+      },
+      "name": "University of Turin",
+      "alpha_two_code": "IT"
+  },
+  "major": {
+    "FOD1P": 1100,
+    "name": "GENERAL AGRICULTURE",
+    "category": "Agriculture & Natural Resources"
+  },
+  "perf": {
+    "rating": 1234,
+    "rd": 100, // rating deviation
+    "vol": 0.06, // volatility
+  },
+  "stats": [{
+    "category": "Engineering",
+    "hit": 3425,
+    "miss": 123
+  }],
+  "picture": {
+    "small": "",
+    "medium": "",
+    "large": "",
+  },
+  "private": {
+      "password": "$2a$12$DlPqzAkaq3r1PRAxHEDwI.mmx.R751qGKf90YY.QgvEE1AAYp/Kdi",
+      "login_token": null,
+      "phone_number": '+393461625500',
+      "chats": ["_id"],
+      "last_questions": ["_id"] // last tot questions
+  },
+  "teams": ["_id"],
+  "games": {
+    "solo": {
+      "wins": 123,
+      "losses": 123,
+      "draws": 44
+    },
+    "squad": {},
+    "team": {}
+  },
+  "activity": [{
+    "interval": {
+      "start": 125254254,
+      "end": 134452435,
+    },
+    "games": {
+      "solo": 23,
+      "squad": 12,
+      "team": 1
+    },
+    "ratings": [1234,1255,5435],
+  }],
+  "news": [{
+    "type": "team_invitation", // team_challenge, challenge, friend_request, team_invitation
+    "user": "_id",
+    "team": "_id", // if necessary
+    "created_at": Date.now()
+  }],
+  "online_time": 796,
+  "online": true,
+  "playing": true,
+  "friends": ["_ids"]
+}
+
 @inject('store') @observer
 export class User extends Component {
-
   constructor(props) {
     super(props);
     this.state = {

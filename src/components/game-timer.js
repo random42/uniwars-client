@@ -9,7 +9,13 @@ const nop = () => {
 
 export class GameTimer extends Component {
 
+  static RATIOS = {
+    text: 0.3,
+    progressWidth: 0.15
+  }
+
   static propTypes = {
+    size: PropTypes.number,
     initialTime: PropTypes.number,
     msInterval: PropTypes.number,
     startOnMount: PropTypes.bool,
@@ -19,6 +25,7 @@ export class GameTimer extends Component {
   }
 
   static defaultProps = {
+    size: 80,
     initialTime: 10,
     msInterval: 1000,
     startOnMount: true,
@@ -73,7 +80,7 @@ export class GameTimer extends Component {
   renderTime() {
     return (
       <Text
-        style={styles.timeText}
+        style={{fontWeight: 'bold', fontSize: this.props.size * GameTimer.RATIOS.text}}
       >
         {this.state.time}
       </Text>
@@ -82,7 +89,7 @@ export class GameTimer extends Component {
 
   render() {
     let {time} = this.state;
-    let {initialTime, containerStyle} = this.props;
+    let {initialTime, containerStyle, size} = this.props;
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
@@ -90,10 +97,11 @@ export class GameTimer extends Component {
       >
         <AnimatedCircularProgress
           prefill={100}
-          size={100}
-          width={15}
+          size={size}
+          width={size*GameTimer.RATIOS.progressWidth}
           tintColor="#00e0ff"
           backgroundColor="#3d5875"
+          rotation={0}
           fill={(time/initialTime)*100}
         >
           {(fill) => {
@@ -108,7 +116,6 @@ export class GameTimer extends Component {
 
 const styles = StyleSheet.create({
   timeText: {
-    fontSize: 30,
-    fontWeight: 'bold'
+
   }
 });
