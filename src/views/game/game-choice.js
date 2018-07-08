@@ -9,8 +9,8 @@ import { Font } from "expo"
 export class GameChoice extends Component {
   state = {
     currentIndex: 0,
-  };
-  
+  }
+
   play() {
     Actions.push('game-match-preview');
   }

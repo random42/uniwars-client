@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Dimensions} from "react-native";
 import PropTypes from 'prop-types';
-import Carousel from "react-native-carousel-control";
+import Carousel from 'react-native-snap-carousel';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+
+const PERCENTAGE_PRECISION = 2; // digits after comma
+const WINDOW = Dimensions.get('window');
 
 
 export class CircularStats extends Component {
@@ -29,7 +32,7 @@ export class CircularStats extends Component {
 
   }
 
-  renderStat(item, index, arr) {
+  renderStat({item, index}) {
     let fill = (item.hit / (item.hit + item.miss)) * 100;
     return (
       <View key={item.name}
@@ -42,7 +45,7 @@ export class CircularStats extends Component {
           fill={fill}
           tintColor="#00e0ff"
           backgroundColor="#3d5875"
-        >{(fill) => (<Text>{fill.toFixed(2)}</Text>)}
+        >{(fill) => (<Text>{fill.toFixed(PERCENTAGE_PRECISION)}</Text>)}
         </AnimatedCircularProgress>
       </View>
     )
@@ -53,12 +56,15 @@ export class CircularStats extends Component {
     return (
       <View style={containerStyle}>
       <Carousel
-        sneak={100}
-        pageWidth={200}
-        initialPage={Math.floor(stats.length / 2)}
-      >
-        {stats.map(this.renderStat)}
-      </Carousel>
+        data={stats}
+        enableSnap={true}
+        firstItem={Math.floor(stats.length/2)}
+        renderItem={this.renderStat}
+        itemWidth={WINDOW.width/2}
+        sliderWidth={WINDOW.width}
+        inactiveSlideScale={0.8}
+        inactiveSlideOpacity={0.6}
+      />
       </View>
     );
   }

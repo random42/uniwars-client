@@ -79,7 +79,7 @@ export class MyRouter extends Component {
             <Scene key="game-choice" component={GameChoice} />
             <Scene key="game-choose-team" component={GameChooseTeam} />
             <Scene key="game-match-preview" component={GameMatchPreview} />
-            <Scene key="game-question" component={GameQuestion} index={0}/>
+            <Scene key="game-question" component={GameQuestion}/>
           </Stack>
           <Scene key="user" initial component={User} />
         </Scene>
