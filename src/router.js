@@ -35,6 +35,7 @@ import {
 } from 'react-native-router-flux';
 import { Icon } from 'react-native-elements';
 import { inject } from 'mobx-react/native';
+import {TestComponent} from './components';
 
 @inject('store')
 export class MyRouter extends Component {
@@ -75,13 +76,14 @@ export class MyRouter extends Component {
             <Scene key="register-form" component={RegisterForm} />
             <Scene key="register-type" component={RegisterType}/>
           </Stack>
-          <Stack key="game" hideNavBar>
+          <Stack key="game" initial hideNavBar>
             <Scene key="game-choice" component={GameChoice} />
             <Scene key="game-choose-team" component={GameChooseTeam} />
             <Scene key="game-match-preview" component={GameMatchPreview} />
-            <Scene key="game-question" component={GameQuestion}/>
+            <Scene key="game-question" initial component={GameQuestion}/>
           </Stack>
-          <Scene key="user" initial component={User} />
+          <Scene key="user" component={User} />
+          <Scene key="test" component={TestComponent} />
         </Scene>
         </Lightbox>
       </Router>
