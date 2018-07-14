@@ -1,6 +1,6 @@
 import store from '../store';
 import axios from 'axios';
-const API = require('./api-requests');
+const API = require('../../assets/data/api.json');
 const uni = {
   async get(_id) {
     let req = API.UNI.GET;

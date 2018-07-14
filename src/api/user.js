@@ -1,4 +1,4 @@
-const API = require('./api-requests');
+const API = require('../../assets/data/api.json');
 import store from '../store';
 import axios from 'axios';
 
@@ -17,7 +17,6 @@ const user = {
     let data = res.data;
     let _id = data.user._id;
     let token = data.token;
-    console.log(username,'logged in');
     axios.defaults.headers['user'] = _id;
     axios.defaults.headers['Authorization'] = token;
     store.api.login_token = token;

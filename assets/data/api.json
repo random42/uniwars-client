@@ -1,0 +1,133 @@
+{
+	"USER": {
+		"GET_USER": {
+			"method": "get",
+			"url": "/user"
+		},
+		"TOP": {
+			"method": "get",
+			"url": "/user/top"
+		},
+		"RANK": {
+			"method": "get",
+			"url": "/user/rank"
+		},
+		"SEARCH": {
+			"method": "get",
+			"url": "/user/search"
+		},
+		"REGISTER": {
+			"method": "post",
+			"url": "/user/register"
+		},
+		"LOGIN": {
+			"method": "put",
+			"url": "/user/login"
+		},
+		"LOGOUT": {
+			"method": "put",
+			"url": "/user/logout"
+		},
+		"DELETE_ACCOUNT": {
+			"method": "delete",
+			"url": "/user"
+		},
+		"SET_PICTURE": {
+			"method": "put",
+			"url": "/user/picture",
+			"headers": {
+				"Content-Type": "application/octet-stream"
+			}
+		},
+		"GET_PICTURE": {
+			"method": "get",
+			"url": "/user/picture"
+		},
+		"CHALLENGE": {
+			"method": "put",
+			"url": "/user/challenge"
+		},
+		"RESPOND_CHALLENGE": {
+			"method": "put",
+			"url": "/user/respond-challenge"
+		},
+		"ADD_FRIEND": {
+			"method": "put",
+			"url": "/user/add-friend"
+		},
+		"RESPOND_FRIEND_REQUEST": {
+			"method": "put",
+			"url": "/user/respond-friend-request"
+		}
+	},
+	"UNI": {
+		"GET": {
+			"method": "get",
+			"url": "/uni"
+		},
+		"TOP": {
+			"method": "get",
+			"url": "/uni/top"
+		},
+		"RANK": {
+			"method": "get",
+			"url": "/uni/rank"
+		}
+	},
+	"TEAM": {
+		"GET": {
+			"method": "get",
+			"url": "/team"
+		},
+		"INVITE": {
+			"method": "put",
+			"url": "/team/invite"
+		},
+		"RESPOND_INVITE": {
+			"method": "put",
+			"url": "/team/respond-invite"
+		},
+		"CHALLENGE": {
+			"method": "put",
+			"url": "/team/challenge"
+		},
+		"RESPOND_CHALLENGE": {
+			"method": "put",
+			"url": "/team/respond-challenge"
+		},
+		"CREATE": {
+			"method": "post",
+			"url": "/team/create"
+		},
+		"DELETE": {
+			"method": "delete",
+			"url": "/team"
+		}
+	},
+	"CHAT": {
+		"GET_MESSAGES": {
+			"method": "put",
+			"url": "/chat/messages"
+		},
+		"CREATE_GROUP": {
+			"method": "post",
+			"url": "/chat/create-group"
+		},
+		"CREATE_PRIVATE": {
+			"method": "post",
+			"url": "/chat/create-private"
+		},
+		"LEAVE_GROUP": {
+			"method": "put",
+			"url": "/chat/leave-group"
+		},
+		"ADD_USER": {
+			"method": "put",
+			"url": "/chat/add-user"
+		},
+		"REMOVE_USER": {
+			"method": "put",
+			"url": "/chat/remove-user"
+		}
+	}
+}

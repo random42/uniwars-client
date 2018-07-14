@@ -32,7 +32,7 @@ export class GameMatchPreview extends Component {
     return (
       <View style={styles.teamListContainer}>
         <FlatList keyExtractor={(item) => item.id.toString() /*TODO togliere toString() */}
-          data={team.members}
+          data={team.players}
           scrollEnabled={false}
           renderItem={renderMember}
           centerContent={true}
