@@ -1,44 +1,50 @@
 import React, {Component} from 'react';
-import {View, Text, ImageBackground } from "react-native";
+import {View, Text, ImageBackground, Dimensions } from "react-native";
 import {Actions} from "react-native-router-flux";
 import Button from 'react-native-button';
 import { MyInput } from '../components';
 import { Icon } from 'react-native-elements';
-import { inject, observer } from 'mobx-react/native';
 import Swiper from 'react-native-swiper';
 import StyleSheet from 'react-native-debug-stylesheet';
+import Api from '../api'
 
 //source={require('../../images/wallpaper.jpg')}>
+
+const WINDOW = Dimensions.get('window')
+const HEIGHT = WINDOW.height
+const WIDTH = WINDOW.width
 
 const blueColor = "#0074D9"
 const greyColor = "#DDDDDD"
 
-@inject('store') @observer
 export class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.store = this.props.store.login;
-    this.store.loginType = 0;
-  }
 
-  componentDidMount() {
+  state = {
+    user: '',
+    password: '',
   }
 
   login() {
-    this.store.login();
+    Api.User.login(this.state).then((user) => {
+      console.log(user)
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   onChangeText(text,key) {
-    this.store.setForm(text,key);
+    this.setState((s) => {
+      s[key] = text
+      return s
+    })
   }
 
   renderInputs() {
     return (
       <View style={styles.loginView}>
         <MyInput containerStyle={styles.inputView}
-          valid
           leftIcon={<Icon name="user-o" type="font-awesome" size={25}/>}
-          placeholder="Username or e-mail"
+          placeholder="Username or email"
           keyboardType="email-address"
           maxLength={254}
           onChangeText={(text) => this.onChangeText(text,'user')}
@@ -58,7 +64,7 @@ export class Login extends Component {
 
   render() {
     return (
-      <View style={styles.container} >
+      <View style={styles.container}>
         <View style={styles.topView}></View>
         <View style={styles.inputsView}>
           {this.renderInputs()}
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputView: {
-    width: 200
+    width: 100
   },
   phoneView: {
     flex: 1,
@@ -110,8 +116,8 @@ const styles = StyleSheet.create({
     marginVertical: 40,
     borderRadius: 20,
     justifyContent: 'center',
-    width: 200,
-    height: 60,
+    width: WIDTH * 0.5,
+    height: WIDTH * 0.14,
     backgroundColor: 'black',
   },
 });

@@ -17,9 +17,8 @@ let goku = "https://images.everyeye.it/img-notizie/dragon-ball-super-toyotaro-di
 let me = "https://avatars2.githubusercontent.com/u/24995370?s=460&v=4"
 
 const WINDOW = Dimensions.get('window');
-const HEIGHT = WINDOW.height / 8;
-const WIDTH = WINDOW.width;
-console.log(WINDOW);
+const HEIGHT = WINDOW.height / 8
+const WIDTH = WINDOW.width
 
 export class GameHeader extends Component {
 

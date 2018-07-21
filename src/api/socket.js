@@ -6,7 +6,7 @@ let socket = io(server.base_url, {
   reconnection: true
 });
 
-exports.main = socket;
+module.exports.main = socket;
 
 export let manager = socket.io;
 
@@ -19,3 +19,5 @@ export let game = manager.socket('/game', {
   autoConnect: false,
   reconnection: false
 });
+
+module.exports.default = module.exports

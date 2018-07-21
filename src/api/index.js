@@ -5,9 +5,11 @@ axios.defaults.baseURL = server.base_url;
 
 
 
-export user from './user'
-export team from './team'
-export uni from './uni'
-export game from './game'
-export chat from './chat'
-export * as socket from './socket'
+export User from './user'
+export Team from './team'
+export Uni from './uni'
+export Game from './game'
+export Chat from './chat'
+export * as Socket from './socket'
+
+export default module.exports

@@ -121,13 +121,13 @@
 			"method": "put",
 			"url": "/chat/leave-group"
 		},
-		"ADD_USER": {
+		"ADD_USERS": {
 			"method": "put",
-			"url": "/chat/add-user"
+			"url": "/chat/add-users"
 		},
-		"REMOVE_USER": {
+		"REMOVE_USERS": {
 			"method": "put",
-			"url": "/chat/remove-user"
+			"url": "/chat/remove-users"
 		}
 	}
 }

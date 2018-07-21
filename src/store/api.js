@@ -1,5 +1,6 @@
 import { observable, action, computed, toJS } from 'mobx';
 import { NetInfo } from 'react-native';
+import { Socket } from '../api'
 
 export class ApiStore {
 
@@ -13,39 +14,26 @@ export class ApiStore {
       if (connected !== this.internet)
         this.setInternet(connected);
     });
+
+    const { main } = Socket
+    main.on('auth', () => {
+      this.setAuth(true)
+    })
+    main.on('disconnect', () => {
+      this.setAuth(false)
+    })
   }
 
 
   // is the device connected to the internet?
   @observable internet;
 
-  // connected sockets
-  @observable socket = {
-    main: false,
-    chat: false,
-    game: false
-  };
-
-  @computed get isSocketConnected() {
-    for (let i in this.socket) {
-      if (!this.socket[i])
-        return false;
-    }
-    return true;
-  }
-
-  // is the user logged in?
+  // is the user connected and authenticated to the server?
   @observable auth = false;
 
   @action setInternet(boolean) {
     this.internet = boolean;
     console.log("Internet =>", boolean);
-  }
-
-  @action setSocket(state = {}) {
-    for (let i in state) {
-      this.socket[i] = state[i];
-    }
   }
 
   @action setAuth(boolean) {

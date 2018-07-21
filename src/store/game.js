@@ -28,20 +28,25 @@ const TEST = {
 export class GameStore {
 
   constructor() {
-    this.searching = null; // can be any game type
-    this.games = [];
+    this.searching = null // can be any game type
+    this.games = []
   }
 
   // current game playing, undefined if not playing
-  @observable current;
+  @observable current
 
-  @computed get playing() {
+  @computed get isPlaying() {
     return current !== undefined
   }
 
+  startGame(game) {
+    this.games.push(game)
+    this.setCurrent(game._id)
+  }
+
   @action setCurrent(_id) {
-    let index = _.findIndex(this.games, {_id});
-    this.current = this.games[index];
-    extendObservable(this.current,Object.keys(this.current));
+    let game = _.find(this.games, {_id})
+    this.current = game
+    extendObservable(this.current, Object.keys(this.current))
   }
 }

@@ -1,4 +1,4 @@
-import {game, user, uni, socket} from '../src/api';
+import Api from '../src/api';
 
 const CREDENTIALS = {
   username: 'bimbo',
@@ -7,17 +7,17 @@ const CREDENTIALS = {
 }
 
 function register() {
-  return user.register(CREDENTIALS);
+  return Api.User.register(CREDENTIALS);
 }
 
 function login() {
-  return user.login(CREDENTIALS)
+  return Api.User.login(CREDENTIALS)
 }
 
 test('register-login-delete', async () => {
   let data = CREDENTIALS;
-  let r = await user.register(data);
-  let login = await user.login(data);
+  let r = await Api.User.register(data);
+  let login = await Api.User.login(data);
   expect(login.email).toEqual(data.email);
-  let del = await user.deleteAccount(data);
+  let del = await Api.User.deleteAccount(data);
 });

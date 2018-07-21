@@ -3,23 +3,21 @@ import store from '../store';
 import axios from 'axios';
 
 const user = {
-  async register({username, email, password}) {
+  async register(form) {
     let req = API.USER.REGISTER;
-    req.data = arguments[0];
+    req.data = form;
     let res = await axios(req);
   },
   // user document
-  async login({username, email, password}) {
-    let req = API.USER.LOGIN;
-    req.params = {username};
-    req.data = {password};
-    let res = await axios(req);
-    let data = res.data;
-    let _id = data.user._id;
-    let token = data.token;
-    axios.defaults.headers['user'] = _id;
-    axios.defaults.headers['Authorization'] = token;
-    store.api.login_token = token;
+  async login({user, password}) {
+    let req = API.USER.LOGIN
+    req.params = {user}
+    req.data = {password}
+    let res = await axios(req)
+    let data = res.data
+    axios.defaults.headers['user'] = data.user._id;
+    axios.defaults.headers['Authorization'] = data.token;
+    store.api.access_token = data.token;
     return data.user;
   },
   async logout() {
