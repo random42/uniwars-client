@@ -4,8 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
 const nop = () => {
-  console.log('nop')
-};
+}
 
 export class GameTimer extends Component {
 

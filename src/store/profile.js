@@ -16,6 +16,9 @@ export class ProfileStore {
   @observable picture = 'https://lh3.googleusercontent.com/-4MU4Y5CRpiQ/WiyuJ9TNpvI/AAAAAAAAF6o/Ga9O3uPtRM8jWWNWS-h0hJAl9QTy-hudQCEwYBhgL/w280-h280-p/profilo.jpg';
   @observable settings;
 
-  @action setItem(data) {
+  @action loadUser(user) {
+    for (let i in user) {
+      this[i] = user[i]
+    }
   }
 }

@@ -9,8 +9,7 @@ export class ApiStore {
       this.setInternet(conn);
     }).catch((err) => console.log(err));
     NetInfo.addEventListener('connectionChange',({type, effectiveType}) => {
-      let connected =
-        type in ['none','unknown'] ? false : true
+      let connected = ['none','unknown'].indexOf(type) < 0
       if (connected !== this.internet)
         this.setInternet(connected);
     });

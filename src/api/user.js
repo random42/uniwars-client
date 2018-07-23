@@ -18,7 +18,7 @@ const user = {
     axios.defaults.headers['user'] = data.user._id;
     axios.defaults.headers['Authorization'] = data.token;
     store.api.access_token = data.token;
-    return data.user;
+    return data;
   },
   async logout() {
     let req = API.USER.LOGOUT;

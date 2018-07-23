@@ -13,6 +13,6 @@ let store = {
   profile: new ProfileStore(),
   game: new GameStore(),
   api: new ApiStore()
-};
+}
 
 export default store

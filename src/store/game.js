@@ -1,4 +1,4 @@
-import { observable, action, computed, toJS } from 'mobx';
+import { observable, action, computed, toJS, extendObservable } from 'mobx';
 import _ from 'lodash/core';
 
 const TEST = {

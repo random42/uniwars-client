@@ -3,21 +3,15 @@ import PhoneNumber from 'awesome-phonenumber';
 import { MAJORS } from '../constants';
 
 const regex = {
-  username: /^(?=(\w|\?|\.)+)(?!).{3,15}$/i,
+  username: /^.{3,15}$/i,
   firstName : /^[a-z]+(\s+[a-z]+)*$/i,
   lastName : /^[a-z]+(\s+[a-z]+)*$/i,
   email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,255}$/g,
+  password: /^.{8,255}$/,
   major: /^[a-z]+(\s+[a-z]+)*$/i
 }
 
 export class RegisterStore {
-  constructor() {
-    // TODO country from DeviceInfo
-    this.countryCode = 39;
-    this.form.phoneNumber = '+'+this.countryCode+' ';
-    this.phoneNumber = new PhoneNumber(this.form.phoneNumber);
-  }
 
   @observable form = {
     email: '',
@@ -27,8 +21,8 @@ export class RegisterStore {
     major: '',
     phoneNumber: '',
     password: '',
-    rpassword: '',
-  };
+    rpassword: ''
+  }
 
   countryCode;
 
@@ -57,7 +51,7 @@ export class RegisterStore {
     if (valid.major) {
       valid.major = MAJORS.filter((item) => {
         return item.major.toLowerCase() === form.major.trim().toLowerCase()
-      }).length === 1;
+      }).length === 1
     }
 
     return valid;
@@ -80,15 +74,12 @@ export class RegisterStore {
 
   @computed get hideResults() {
     if (this.inputFocus !== 'major') return true;
-    return this.validForm.major && this.searchMajor.length === 1;
+    return this.validForm.major// && this.searchMajor.length === 1;
   }
 
   @action setForm(form = {}) {
     for (let field in form) {
-      this.form[field] = form[field];
-    }
-    if ('phoneNumber' in form) {
-      this.phoneNumber = new PhoneNumber(this.form.phoneNumber);
+      this.form[field] = form[field].trim()
     }
   }
 

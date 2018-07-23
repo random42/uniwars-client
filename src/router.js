@@ -13,7 +13,8 @@ import {
   GameChoice,
   GameQuestion,
   GameChooseTeam,
-  GameMatchPreview
+  GameMatchPreview,
+  GameEnd
 } from './views/game';
 import {
   RegisterEmail,
@@ -69,9 +70,9 @@ export class MyRouter extends Component {
             <Scene key="rank" component={Rank} icon={tabIcons[2]} />
             <Scene key="profile" component={Profile} icon={tabIcons[3]}/>
           </Tabs>
-          <Scene key="login" initial component={Login} />
+          <Scene key="login" component={Login} />
           <Scene key="intro" component={Intro} />
-          <Stack key="register" hideNavBar>
+          <Stack key="register" initial hideNavBar>
             <Scene key="register-email" component={RegisterEmail}/>
             <Scene key="register-form" component={RegisterForm} />
             <Scene key="register-type" component={RegisterType}/>
@@ -81,6 +82,7 @@ export class MyRouter extends Component {
             <Scene key="game-choose-team" component={GameChooseTeam} />
             <Scene key="game-match-preview" component={GameMatchPreview} />
             <Scene key="game-question" component={GameQuestion}/>
+            <Scene key="game-end" component={GameEnd}/>
           </Stack>
           <Scene key="user" component={User} />
           <Scene key="test" component={TestComponent} />

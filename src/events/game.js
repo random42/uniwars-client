@@ -1,27 +1,33 @@
 import { Actions } from 'react-native-router-flux'
 import { game as socket } from '../api/socket'
-import { game as store} from '../store'
+import store from '../store'
 
-game.on('new_game', ({_id, type}) => {
+
+socket.on('new_game', ({_id, type}) => {
   let obj = {
     game: _id,
     response: ''
   }
-  if (store.searching === type)
+  if (store.game.searching === type)
     obj.response = 'y'
   else obj.response = 'n'
   socket.emit('join', obj)
 })
 
-game.on('start_game', ({game}) => {
-  store.startGame(game)
-  Actions.game()
+socket.on('game_start', ({game}) => {
+  store.game.startGame(game)
+  Actions.push('game-match-preview', {game})
 })
 
-game.on('question', ({ game, question }) => {
-
+socket.on('question', ({ game, question }) => {
+  Actions.push('game-question', { game, question })
 })
 
-game.on('mate_answer', ({user, question, answer}) => {
+socket.on('mate_answer', ({user, question, answer}) => {
   // TODO
+})
+
+socket.on('game_end', (stats) => {
+  console.log(stats.result)
+  Actions.push('game-end', {result: stats.result})
 })

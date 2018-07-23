@@ -5,29 +5,42 @@ import Button from 'react-native-button';
 import { GameTimer, GameHeader } from '../../components';
 import { GAME_QUESTIONS_NUMBER } from '../../constants';
 import PropTypes from 'prop-types';
+import _ from 'lodash'
+import Api from '../../api'
 
 const TEST = {
-  question: "What color is Napoleon's white horse?",
-  answers: ["Black","Red","White","Yellow"],
-  category: "General",
-  correctAnswer: "White"
+  game: "_id",
+  question: {
+    _id: 'asd',
+    question: "What color is Napoleon's white horse?",
+    incorrect_answers: ["Black","Red","Yellow"],
+    category: "General",
+    correct_answer: "White"
+  }
 }
+
+// TODO send answer api
 
 const WINDOW = Dimensions.get('window')
 
 export class GameQuestion extends Component {
 
+  state = {
+    answer: null
+  }
+
   static propTypes = {
-    question: PropTypes.string,
-    answers: PropTypes.arrayOf(PropTypes.string),
-    category: PropTypes.string,
-    correctAnswer: PropTypes.string
+    game: PropTypes.string,
+    question: PropTypes.object,
   }
 
   static defaultProps = TEST
 
   constructor(props) {
-    super(props);
+    super(props)
+    // shuffling answers
+    let { incorrect_answers, correct_answer } = props.question
+    this.answers = _.shuffle([...incorrect_answers, correct_answer])
   }
 
   // nextQuestion() {
@@ -35,26 +48,39 @@ export class GameQuestion extends Component {
   // }
 
   sendAnswer(answer) {
-    // TODO animation
-    console.log(answer === this.question.answers ? 'Correct!' : 'Wrong!');
+    this.refs.timer.stop()
+    this.setState({answer})
+    Api.Game.answer({
+      game: this.props.game,
+      question: this.props.question._id,
+      answer
+    })
   }
 
   renderQuestion() {
     return (
       <View style={styles.questionView}>
-        <Text style={styles.questionText}>{this.props.question}</Text>
+        <Text style={styles.questionText}>{this.props.question.question}</Text>
       </View>
     );
   }
 
   renderAnswer(index) {
-    let {answers} = this.props;
-    let answer = answers[index];
-    let _onPress = () => { this.sendAnswer(answer)};
+    let { correct_answer } = this.props.question
+    let answer = this.answers[index]
+    let style = [styles.answerView]
+    if (answer === this.state.answer) {
+      if (answer === correct_answer) {
+        style.push(styles.rightAnswer)
+      } else {
+        style.push(styles.wrongAnswer)
+      }
+    }
+    let _onPress = () => { this.sendAnswer(answer) }
     return (
       <Button
         onPress={_onPress}
-        containerStyle={styles.answerView}
+        containerStyle={style}
         style={styles.answerText}
       >
         {answer}
@@ -78,7 +104,11 @@ export class GameQuestion extends Component {
       <View style={styles.container}>
         <GameHeader containerStyle={styles.header}/>
         <View style={styles.content}>
-          <GameTimer size={70} containerStyle={styles.timerView}/>
+          <GameTimer
+            ref="timer"
+            size={70}
+            containerStyle={styles.timerView}
+          />
           {this.renderQuestion()}
           {this.renderAnswers()}
         </View>
@@ -116,6 +146,7 @@ const styles = StyleSheet.create({
     flex: 2,
     marginBottom: 20,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#99ea86'
   },
   answersView: {
@@ -142,4 +173,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center'
   },
+  wrongAnswer: {
+    backgroundColor: 'red'
+  },
+  rightAnswer: {
+    backgroundColor: 'green'
+  }
 });

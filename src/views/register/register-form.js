@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet } from "react-native";
+import {View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import {Actions} from "react-native-router-flux";
-import Button from 'react-native-button';
+import { when } from "mobx"
 import { inject, observer } from 'mobx-react/native';
-import { Icon } from 'react-native-elements';
 import { MyInput } from '../../components';
-import { Input, ListItem, Divider } from 'react-native-elements';
+import RCButton from 'react-native-button'
+import { Input, ListItem, Divider, Button, Icon } from 'react-native-elements';
 import Autocomplete from 'react-native-autocomplete-input';
+import Toast, {DURATION} from 'react-native-easy-toast'
+import Api from '../../api'
 
 const MAJORS = require('../../../data/majors.json');
 const itemHeight = 70;
 const separatorHeight = 1;
-
+const WINDOW = Dimensions.get('window')
+const HEIGHT = WINDOW.height
+const WIDTH = WINDOW.width
 const leftIconSize = 30;
 const textInputProps = {
   autoCorrect: false,
@@ -72,17 +76,17 @@ const inputs = [
       autoCapitalize: 'words',
       returnKeyType: 'next',
     }
-  },{
-    key: 'phoneNumber',
-    icon: {
-      name: 'phone',
-      type: 'font-awesome',
-    },
-    props: {
-      placeholder: 'Phone number',
-      returnKeyType: 'done',
-      keyboardType: 'numeric',
-    }
+  // },{
+  //   key: 'phoneNumber',
+  //   icon: {
+  //     name: 'phone',
+  //     type: 'font-awesome',
+  //   },
+  //   props: {
+  //     placeholder: 'Phone number',
+  //     returnKeyType: 'done',
+  //     keyboardType: 'numeric',
+  //   }
   },{
     key: 'password',
     icon: {
@@ -119,7 +123,6 @@ export class RegisterForm extends Component {
     super(props);
     this.store = this.props.store.register;
     this.onChangeText = this.onChangeText.bind(this);
-    this.sendForm = this.sendForm.bind(this);
     this.onInputFocus = this.onInputFocus.bind(this);
     this.inputs = {};
   }
@@ -131,7 +134,35 @@ export class RegisterForm extends Component {
     this.inputs[key] = ref;
   }
 
-  sendForm() {
+  register() {
+    let form = {...this.store.form}
+
+    for (let i in form) {
+      if (form[i] === '')
+        delete form[i]
+    }
+    delete form.rpassword
+    Api.User.register(form).then((res) => {
+      //this.refs.toast.show('Signed up successfully!', 1000)
+      setTimeout(() => {
+        Api.User.login({user: form.username, password: form.password})
+        .then((data) => {
+          this.props.store.profile.loadUser(data.user)
+          Api.Socket.connect({_id: data.user._id, token: data.token})
+          when(() => {
+            return this.props.store.api.auth
+          }).then(() => {
+            Actions.home()
+          })
+        }).catch((err) => {
+          console.log(err.message)
+        })
+      },
+      1800
+      )
+    }).catch((err) => {
+      console.log(err.message)
+    })
   }
 
   onInputFocus(input) {
@@ -164,8 +195,8 @@ export class RegisterForm extends Component {
       return;
     }
     let valid = validForm[item.key];
-    let def = <MyInput {...item.props} {...textInputProps}
-      defaultValue={this.store.form[item.key]}
+    let def =
+    <MyInput {...item.props} {...textInputProps}
       valid={valid}
       key={item.key}
       name={item.key}
@@ -174,12 +205,12 @@ export class RegisterForm extends Component {
       onChangeText={(text) => this.onChangeText(text,item.key)}
       maxLength={maxLength[item.key]}
       leftIcon={<Icon {...item.icon} />}
-       />;
+    />
 
     if (item.key === 'major') {
       let data = this.store.searchMajor;
       return (
-        <Autocomplete
+      <Autocomplete
         key={item.key}
         data={data}
         hideResults={this.store.hideResults}
@@ -190,24 +221,46 @@ export class RegisterForm extends Component {
         maxItems={4}
         listStyle={styles.searchList}
         renderSeparator={this.renderSearchItemSeparator}
-        />
+      />
       )
-
-
     }
     return def;
   }
 
   render() {
+    let validForm = this.store.validForm
+    let disabled = false
+    for (let i in inputs) {
+      if (validForm[inputs[i].key] !== true) {
+        disabled = true
+        break
+      }
+    }
+
     return (
       <View style={[styles.container]}>
-        <Button containerStyle={styles.photoContainer}>
+        <RCButton containerStyle={styles.photoContainer}>
           <Icon name='camera' type='entypo' size={60}/>
           <Icon name='add' size={25} style={styles.addPhotoIcon}/>
-        </Button>
+        </RCButton>
         {inputs.map(this.renderInput)}
-        <Button style={styles.signUp} onPress={this.sendForm}>Done
-        </Button>
+        <Button
+          title="Done"
+          buttonStyle={styles.signUp}
+          titleStyle={styles.signUpText}
+          onPress={() => this.register()}
+          disabled={disabled}
+        />
+        <Toast
+          ref="toast"
+          style={{backgroundColor:'black'}}
+          position='bottom'
+          positionValue={200}
+          fadeInDuration={400}
+          fadeOutDuration={400}
+          opacity={0.8}
+          textStyle={{color:'white'}}
+        />
       </View>
     );
   }
@@ -227,9 +280,14 @@ const styles = StyleSheet.create({
   addPhotoIcon: {
     alignSelf: 'flex-start',
   },
-  signUp: {
-    fontSize: 22,
+  signUpText: {
+    fontSize: 20,
     fontWeight: 'bold',
+  },
+  signUp: {
+    width: WIDTH * 0.4,
+    height: WIDTH * 0.12,
+    borderRadius: 5
   },
   searchList: {
   },
