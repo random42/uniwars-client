@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "exp start",
+    "start": "exp start --lan --no-dev",
     "dev": "exp start --lan",
     "test": "node_modules/.bin/jest"
   },

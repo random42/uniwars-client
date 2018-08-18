@@ -8,11 +8,11 @@ import { inject, observer } from 'mobx-react/native';
 export class RegisterType extends Component {
 
   login() {
-    Actions.push('login');
+    Actions.push('login')
   }
 
   register(type) {
-    Actions.push('register',{type});
+    Actions.push('register',{type})
   }
 
 

@@ -1,17 +1,18 @@
-import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, Dimensions } from "react-native";
-import {Actions} from "react-native-router-flux";
+import React, {Component} from 'react'
+import {View, Text, Image, StyleSheet, Dimensions } from "react-native"
+import {Actions} from "react-native-router-flux"
 import { when } from "mobx"
-import { inject, observer } from 'mobx-react/native';
-import { MyInput } from '../../components';
+import PropTypes from 'prop-types';
+import { inject, observer } from 'mobx-react/native'
+import { MyInput } from '../../components'
 import RCButton from 'react-native-button'
+import { MAJORS } from '../../constants'
 import { Input, ListItem, Divider, Button, Icon } from 'react-native-elements';
 import Autocomplete from 'react-native-autocomplete-input';
 import Toast, {DURATION} from 'react-native-easy-toast'
 import Api from '../../api'
 
-const MAJORS = require('../../../data/majors.json');
-const itemHeight = 70;
+const majorListItemHeight = 70;
 const separatorHeight = 1;
 const WINDOW = Dimensions.get('window')
 const HEIGHT = WINDOW.height
@@ -21,7 +22,7 @@ const textInputProps = {
   autoCorrect: false,
 }
 
-const maxLength = {
+const MAX_LENGTH = {
   firstName: 1024,
   lastName: 1024,
   email: 254,
@@ -29,7 +30,7 @@ const maxLength = {
   major: 255
 }
 
-const inputs = [
+const INPUTS = [
   //{
   //   key: 'firstName',
   //   icon: {
@@ -63,6 +64,7 @@ const inputs = [
       placeholder: '@username',
       autoCapitalize: 'none',
       returnKeyType: 'next',
+      textContentType: 'username'
     }
   },
   {
@@ -76,18 +78,8 @@ const inputs = [
       autoCapitalize: 'words',
       returnKeyType: 'next',
     }
-  // },{
-  //   key: 'phoneNumber',
-  //   icon: {
-  //     name: 'phone',
-  //     type: 'font-awesome',
-  //   },
-  //   props: {
-  //     placeholder: 'Phone number',
-  //     returnKeyType: 'done',
-  //     keyboardType: 'numeric',
-  //   }
-  },{
+  },
+  {
     key: 'password',
     icon: {
       name: 'lock',
@@ -98,44 +90,104 @@ const inputs = [
       autoCapitalize: 'none',
       returnKeyType: 'next',
       secureTextEntry: true,
+      textContentType: 'password'
     }
-  },{
+  },
+  {
     key: 'rpassword',
     icon: {
       name: 'lock',
       type: 'font-awesome',
     },
     props: {
-      placeholder: 'Re-type password',
+      placeholder: 'Retype password',
       autoCapitalize: 'none',
       returnKeyType: 'done',
       secureTextEntry: true,
+      textContentType: 'password'
     }
   }
 ];
 
-
-
-@inject('store') @observer
+@inject('store')
 export class RegisterForm extends Component {
 
   constructor(props) {
-    super(props);
-    this.store = this.props.store.register;
-    this.onChangeText = this.onChangeText.bind(this);
-    this.onInputFocus = this.onInputFocus.bind(this);
-    this.inputs = {};
+    super(props)
+    this.renderInput = this.renderInput.bind(this)
+    this.renderSearchItem = this.renderSearchItem.bind(this)
   }
 
-  componentDidMount() {
+  static propTypes = {
+    email: PropTypes.string
+  }
+
+  inputs = {}
+
+  state = {
+    form: {
+      username: '',
+      major: '',
+      password: '',
+      rpassword: '',
+    },
+    focus: undefined
+  }
+
+  REGEX = {
+    username: /^.{3,15}$/i,
+    email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    password: /^.{8,255}$/,
+    major: /^[a-z]+(\s+[a-z]+)*$/i
+  }
+
+  isFormValid() {
+    let { form } = this.state
+    let valid = {}
+    // check regexes
+    for (let field in this.REGEX) {
+      if (form[field] === '')
+        valid[field] = undefined
+      else
+        valid[field] = this.REGEX[field].test(form[field])
+    }
+    valid.rpassword = form.rpassword === '' ? undefined : valid.password && form.password === form.rpassword
+    if (valid.major) {
+      valid.major = MAJORS.filter((item) => {
+        return item.major.toLowerCase() === form.major.trim().toLowerCase()
+      }).length === 1
+    }
+    return valid
+  }
+
+  setForm(key, value) {
+    this.setState((s) => {
+      s.form[key] = value.trim()
+      return s
+    })
   }
 
   refInputs = (ref,key) => {
-    this.inputs[key] = ref;
+    this.inputs[key] = ref
+  }
+
+  majors() {
+    let text = this.state.form.major
+    let array =  MAJORS.filter(elem => {
+      let query = text.toLowerCase();
+      return elem.major.toLowerCase().indexOf(query) > -1;
+    }).map(item => {
+      return {
+        title: item.major,
+        subtitle: item.major_category,
+        hideChevron: true,
+      }
+    })
+    return array;
   }
 
   register() {
-    let form = {...this.store.form}
+    let form = {...this.state.form, email: this.props.email }
 
     for (let i in form) {
       if (form[i] === '')
@@ -165,15 +217,17 @@ export class RegisterForm extends Component {
     })
   }
 
-  onInputFocus(input) {
-    this.store.switchFocus(input);
+  onInputFocus(key) {
+    this.setState({focus: key})
   }
 
-  renderSearchItem = ({item,index}) => {
+  renderSearchItem({item,index}) {
     return (<ListItem
       {...item}
-      containerStyle={{}}
-      onPress={() => this.store.selectMajor(item.title)}
+      onPress={() => {
+        this.setForm('major', item.title)
+        this.onInputFocus(undefined)
+      }}
     />);
   }
 
@@ -181,42 +235,34 @@ export class RegisterForm extends Component {
     return (<Divider/>)
   }
 
-  onChangeText(text,key) {
-    let form = {};
-    form[key] = text;
-    this.props.store.register.setForm(form);
-  }
-
-  renderInput = (item,index) => {
-    let validForm = this.store.validForm;
-    if (this.props.type === 'phone' && (item.key === 'password' || item.key === 'rpassword')) {
-      return;
-    } else if (this.props.type === 'password' && item.key === ('phoneNumber')) {
-      return;
-    }
-    let valid = validForm[item.key];
+  renderInput(item,index) {
+    let { key } = item
+    let { form } = this.state
+    let validForm = this.isFormValid()
+    let valid = validForm[key]
     let def =
     <MyInput {...item.props} {...textInputProps}
       valid={valid}
-      key={item.key}
-      name={item.key}
-      onFocus={() => this.store.switchFocus(item.key)}
-      inputRef={(ref) => this.refInputs(ref,item.key)}
-      onChangeText={(text) => this.onChangeText(text,item.key)}
-      maxLength={maxLength[item.key]}
+      key={key}
+      name={key}
+      defaultValue={form[key]}
+      onFocus={() => this.onInputFocus(key)}
+      inputRef={(ref) => this.refInputs(ref, key)}
+      onChangeText={(text) => this.setForm(key, text)}
+      maxLength={MAX_LENGTH[key]}
       leftIcon={<Icon {...item.icon} />}
     />
 
-    if (item.key === 'major') {
-      let data = this.store.searchMajor;
+    if (key === 'major') {
+      let data = this.majors()
       return (
       <Autocomplete
-        key={item.key}
+        key={key}
         data={data}
-        hideResults={this.store.hideResults}
+        hideResults={this.state.focus !== 'major'}
         renderItem={this.renderSearchItem}
         renderTextInput={() => def}
-        itemHeight={itemHeight}
+        itemHeight={majorListItemHeight}
         separatorHeight={separatorHeight}
         maxItems={4}
         listStyle={styles.searchList}
@@ -228,10 +274,10 @@ export class RegisterForm extends Component {
   }
 
   render() {
-    let validForm = this.store.validForm
+    let validForm = this.isFormValid()
     let disabled = false
-    for (let i in inputs) {
-      if (validForm[inputs[i].key] !== true) {
+    for (let i in INPUTS) {
+      if (validForm[INPUTS[i].key] !== true) {
         disabled = true
         break
       }
@@ -243,7 +289,7 @@ export class RegisterForm extends Component {
           <Icon name='camera' type='entypo' size={60}/>
           <Icon name='add' size={25} style={styles.addPhotoIcon}/>
         </RCButton>
-        {inputs.map(this.renderInput)}
+        {INPUTS.map(this.renderInput)}
         <Button
           title="Done"
           buttonStyle={styles.signUp}

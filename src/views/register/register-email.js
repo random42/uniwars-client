@@ -7,31 +7,37 @@ import { inject, observer } from 'mobx-react/native';
 import { MyInput } from '../../components';
 import { Icon } from 'react-native-elements';
 
-@inject('store') @observer
+
 export class RegisterEmail extends Component {
+
+  state = {
+    email: ''
+  }
+
+  REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  isEmailValid() {
+    let { email } = this.state
+    if (email === '') return undefined
+    return this.REGEX.test(email)
+  }
+
   constructor(props) {
     super(props);
-    this.onChangeText = this.onChangeText.bind(this);
-    this.next = this.next.bind(this);
+    this.onChangeText = this.onChangeText.bind(this)
+    this.next = this.next.bind(this)
   }
 
   next() {
-    if (this.props.store.register.validForm.email) {
-      //TODO backend check
-      if (this.props.type != 'extern') {
-        Actions.push('register-form',{type: this.props.type});
-      } else {
-        Actions.reset('tabs');
-      }
-    }
+    Actions.push('register-form', { email: this.state.email })
   }
 
   onChangeText(text) {
-    this.props.store.register.setForm({email: text});
+    this.setState({ email: text })
   }
 
   render() {
-    let valid = this.props.store.register.validForm.email;
+    let valid = this.isEmailValid()
     return (
       <View style={styles.container}>
         <Text style={styles.topText}>
