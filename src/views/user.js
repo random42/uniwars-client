@@ -133,10 +133,11 @@ const TEST = {
 @inject('store') @observer
 export class User extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      user: undefined
-    };
+    super(props)
+  }
+
+  state = {
+    user: undefined
   }
 
   static propTypes = {

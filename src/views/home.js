@@ -18,7 +18,6 @@ import {
 @inject('store') @observer
 export class Home extends Component {
     render() {
-        let players = this.props.store.rank.top_5;
 
         return (
             <View style={styles.container}>
@@ -34,9 +33,6 @@ export class Home extends Component {
                         </LinearGradient>
                     </TouchableOpacity>
                 </View>
-                <ScrollView contentContainerStyle={styles.scroll}>
-                    <Classifica containerStyle={styles.rankTab} head={players.head} data={players.data} title="Top 5" />
-                </ScrollView>
             </View>
         );
     }

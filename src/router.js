@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-//import { SearchView } from './components';
 import {
   Login,
   Home,
@@ -67,12 +66,12 @@ export class MyRouter extends Component {
             path={"/tabs"}>
             <Scene key="home" component={Home} icon={tabIcons[0]}/>
             <Scene key="chat" component={Chat} icon={tabIcons[1]}/>
-            <Scene key="rank" component={Rank} icon={tabIcons[2]} />
+            <Scene key="rank" initial component={Rank} icon={tabIcons[2]} />
             <Scene key="profile" component={Profile} icon={tabIcons[3]}/>
           </Tabs>
           <Scene key="login" component={Login} />
           <Scene key="intro" component={Intro} />
-          <Stack key="register" initial hideNavBar>
+          <Stack key="register" hideNavBar>
             <Scene key="register-email" component={RegisterEmail}/>
             <Scene key="register-form" component={RegisterForm} />
             <Scene key="register-type" component={RegisterType}/>

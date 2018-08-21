@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, WebView, Dimensions } from "react-native";
 import {Actions} from "react-native-router-flux";
-import { GameTimer } from './index';
+import { RankList } from './index';
 import Button from 'react-native-button';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
@@ -14,9 +14,7 @@ export class TestComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <WebView
-          source={{uri: 'https://www.google.com/'}}
-          style={{height: WINDOW.height, width: WINDOW.width}}
+        <RankList
         />
       </View>
     );
@@ -26,5 +24,7 @@ export class TestComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    //justifyContent: 'center',
+    //alignItems: 'center'
   },
 });

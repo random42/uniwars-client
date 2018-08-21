@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, Image, StyleSheet, Dimensions } from "react-native"
+import {View, Text, Image, StyleSheet, Dimensions, KeyboardAvoidingView, ScrollView } from "react-native"
 import {Actions} from "react-native-router-flux"
 import { when } from "mobx"
 import PropTypes from 'prop-types';
@@ -284,7 +284,11 @@ export class RegisterForm extends Component {
     }
 
     return (
-      <View style={[styles.container]}>
+      <KeyboardAvoidingView
+        style={[styles.container]}
+        behavior="padding"
+        enabled
+        >
         <RCButton containerStyle={styles.photoContainer}>
           <Icon name='camera' type='entypo' size={60}/>
           <Icon name='add' size={25} style={styles.addPhotoIcon}/>
@@ -307,7 +311,7 @@ export class RegisterForm extends Component {
           opacity={0.8}
           textStyle={{color:'white'}}
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
