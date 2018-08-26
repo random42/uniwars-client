@@ -1,6 +1,7 @@
 import { observable, action, computed, toJS } from 'mobx';
+import _ from 'lodash/core'
 
-let testMessages = [
+const testMessages = [
   {
     _id: 1,
     text: 'Hi there',
@@ -63,44 +64,46 @@ let testMessages = [
   },
 ]
 
-let testUser = {_id:1};
+const testUser = {_id:1}
+const testChats = [
+  {
+    name: 'Community',
+    image: 'https://image.freepik.com/free-icon/multiple-users-silhouette_318-49546.jpg',
+    _id: '0',
+    messages: [],
+  },
+  {
+    name: 'University of Turin',
+    image: 'https://cdn2.iconfinder.com/data/icons/crazy-paparazzi-collection-svg/100/Noun_Project_100Icon_10px_grid_2-47-128.png',
+    _id: '1',
+    messages: testMessages,
+  },
+  {
+    name: 'MyTeam',
+    image: 'https://www.colourbox.com/preview/18846189-team-icon-set.jpg',
+    _id: '2',
+    messages: [],
+  },
+]
+
 
 export class ChatStore {
 
-  @observable activeChat = '0';
+  @observable chats = testChats
 
-  @observable chats = [
-    {
-      name: 'Community',
-      image: 'https://image.freepik.com/free-icon/multiple-users-silhouette_318-49546.jpg',
-      _id: '0',
-      messages: [],
-    },
-    {
-      name: 'University of Turin',
-      image: 'https://cdn2.iconfinder.com/data/icons/crazy-paparazzi-collection-svg/100/Noun_Project_100Icon_10px_grid_2-47-128.png',
-      _id: '1',
-      messages: testMessages,
-    },
-    {
-      name: 'MyTeam',
-      image: 'https://www.colourbox.com/preview/18846189-team-icon-set.jpg',
-      _id: '2',
-      messages: [],
-    },
-  ];
+  @action sendMessage(messages, chat) {
+    let c = _.find(this.chats, { _id: chat })
+    c = c.concat(
+      messages.map((m) => {
+        return {
 
-  @action sendMessage(messages) {
-    let chat = this.chats.find((el) => el._id === this.activeChat);
-    chat.messages = chat.messages.concat(messages);
+        }
+      })
+    )
   }
 
   @computed get messages() {
     let chat = this.chats.find((el) => el._id === this.activeChat);
     return toJS(chat.messages);
-  }
-
-  @action selectChat(id) {
-    this.activeChat = id;
   }
 }

@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, FlatList} from "react-native";
+import {View, Text, StyleSheet, FlatList, Dimensions} from "react-native";
 import {Actions} from "react-native-router-flux";
-import { List, ListItem, Avatar, Icon, Divider } from 'react-native-elements'
+import { List, ListItem, Icon, Divider } from 'react-native-elements'
 import Button from 'react-native-button';
+import Avatar from 'react-native-user-avatar'
 import { inject, observer } from 'mobx-react/native';
+
+const WINDOW = Dimensions.get('window')
 
 @inject('store') @observer
 export class Profile extends Component {
@@ -13,15 +16,15 @@ export class Profile extends Component {
   }
 
   renderInfos() {
-    let user = this.props.store.profile;
-    let infos = [{
-        key: 'name',
+    const user = this.props.store.profile;
+    const infos = [{
+        key: 'username',
         icon: {
           size: 30,
           name: 'person'
         },
-        text: user.name,
-        style: {fontSize: 20, fontWeight: 'bold'}
+        text: "@" + user.username,
+        style: {fontSize: 18, fontWeight: 'bold'}
       },{
         key: 'uni',
         icon: {
@@ -55,7 +58,7 @@ export class Profile extends Component {
       })
     }
 
-    let renderItem = (item) => {
+    const renderItem = (item) => {
       if (item)
       return (
         <View key={item.key} style={styles.infoView}>
@@ -64,62 +67,47 @@ export class Profile extends Component {
         </View>
       )
     }
-    if (user.team) {
-      return (
-        <View style={styles.infosView}>
-          {renderItem(infos[0])}
-          <Divider />
-          {renderItem(infos[1])}
-          <Divider />
-          {renderItem(infos[2])}
-          <Divider />
-          {renderItem(infos[3])}
-        </View>
-      );
-    }
-    else {
-      return (
-        <View style={styles.infosView}>
-          {renderItem(infos[0])}
-          <Divider />
-          {renderItem(infos[1])}
-          <Divider />
-          {renderItem(infos[2])}
-        </View>
-      );
-    }
+    return (
+      <View style={styles.infosView}>
+        {renderItem(infos[0])}
+        <Divider />
+        {renderItem(infos[1])}
+        <Divider />
+        {renderItem(infos[2])}
+      </View>
+    );
   }
 
   render(){
-    let user = this.props.store.profile;
+    const user = this.props.store.profile;
     return (
         <View style={styles.container}>
           <View style={styles.topView}>
-            <Avatar rounded
-              containerStyle={{marginLeft: 10}}
-              xlarge
-              source={{uri: user.image}}
-              component={View}>
-              <Icon name=''/>
+            <Avatar
+              size={WINDOW.width / 3.5}
+              name={user.username}
+              src={user.picture}
+              >
             </Avatar>
             {this.renderInfos()}
           </View>
           <View style={styles.bottomView}></View>
         </View>
-    );
-    }
+    )
+  }
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingTop: 40,
+      paddingTop: 30,
       backgroundColor: 'yellow',
     },
     topView: {
-      flex: 1,
+      height: WINDOW.width * 0.4,
       flexDirection: 'row',
       backgroundColor: 'white',
+      paddingLeft: WINDOW.width * 0.03
     },
     bottomView: {
       flex: 2,

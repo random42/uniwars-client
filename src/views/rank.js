@@ -73,6 +73,7 @@ export class Rank extends Component {
     for (let s of SLIDES) {
       this.state.data[s.key] = []
     }
+    console.log(this.state)
   }
 
   onEndReached = (key, dataLength) => {
