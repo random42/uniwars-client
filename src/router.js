@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {
   Login,
   Home,
-  Chat,
   Rank,
   Profile,
   Intro,
@@ -65,7 +64,7 @@ export class MyRouter extends Component {
             tabBarPosition="bottom"
             path={"/tabs"}>
             <Scene key="home" component={Home} icon={tabIcons[0]}/>
-            <Scene key="chat" component={Chat} icon={tabIcons[1]}/>
+            <Scene key="chat" component={TestComponent} icon={tabIcons[1]}/>
             <Scene key="rank" component={Rank} icon={tabIcons[2]} />
             <Scene key="profile" initial component={Profile} icon={tabIcons[3]}/>
           </Tabs>
