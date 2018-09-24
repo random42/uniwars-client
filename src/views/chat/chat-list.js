@@ -1,60 +1,108 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, Button} from "react-native";
-import {Actions} from "react-native-router-flux";
-import {ChatChoice} from '../components';
-import { GiftedChat } from 'react-native-gifted-chat';
-import { inject, observer } from 'mobx-react/native';
-import { toJS } from 'mobx';
+import React, {Component} from 'react'
+import {View, Text, StyleSheet, Dimensions, FlatList} from "react-native"
+import { Input, Divider, ListItem, Icon } from 'react-native-elements'
+import {Actions} from "react-native-router-flux"
+import PropTypes from 'prop-types'
+import { inject, observer } from 'mobx-react/native'
+import { toJS } from 'mobx'
 
-const testUser = {
-  _id: 1
-}
+const WINDOW = Dimensions.get('window')
 
 @inject('store') @observer
-export class Chat extends Component {
+export class ChatList extends Component {
 
-  onSend(messages = []) {
-    this.props.store.chat.sendMessage(messages);
+  state = {
+    search: ''
   }
 
-  selectChat(id) {
-    this.props.store.chat.selectChat(id);
+  renderItem({item, index}) {
+    return (
+      <ListItem
+        key={item._id}
+        onPress={() => {
+          Actions.push('chat-main', {chat: item._id})
+        }}
+        leftAvatar={{
+          source: {uri: item.picture},
+          rounded: true,
+          overlayContainerStyle: {
+            backgroundColor: 'white'
+          },
+        }}
+        title={item.name}
+        subtitle={item.lastMessage}
+        rightTitle={item.time}
+      />
+    )
+  }
+
+
+  renderList() {
+    const chats = this.props.store.chat.chatList.filter((item) => {
+      return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0
+    })
+
+    return (
+      <FlatList
+        data={chats}
+        renderItem={(arg) => this.renderItem(arg)}
+        keyExtractor={(item) => item._id}
+      />
+    )
+  }
+
+  renderSearchInput() {
+    const { search } = this.state
+    const icon = search !== '' ?
+      (<Icon
+        name="cancel"
+        onPress={() => {
+          this.refs.searchInput.clear()
+          this.setState({search: ''})
+        }}
+      />)
+        :
+      (<Icon
+        type="feather"
+        name="search"
+      />)
+    return (
+      <Input
+        ref="searchInput"
+        defaultValue={this.state.search}
+        onChangeText={(text) => {
+          this.setState({search: text.trim()})
+        }}
+        placeholder="Search through chats"
+        containerStyle={styles.searchView}
+        inputContainerStyle={styles.searchInputView}
+        rightIcon={icon}
+      />
+    )
   }
 
   render() {
-    let {chat} = this.props.store;
-    let messages = chat.messages;
     return (
-        <View style={styles.container}>
-          <View style={styles.chatChoiceView}>
-            <ChatChoice
-              data={chat.chats}
-              selected={chat.activeChat}
-              onPressItem={this.selectChat.bind(this)}/>
-          </View>
-          <View style={styles.chatView}>
-            <GiftedChat
-              messages={messages}
-              user={testUser}
-              onSend={this.onSend.bind(this)}
-            />
-          </View>
-        </View>
+      <View style={styles.container}>
+        {this.renderSearchInput()}
+        {this.renderList()}
+      </View>
     );
-    }
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'row',
-      backgroundColor: 'yellow',
-    },
-    chatChoiceView: {
-      flex: 1,
-      backgroundColor: 'red',
-    },
-    chatView: {
-      flex: 4
-    }
+  container: {
+    flex: 1,
+  },
+  searchView: {
+    height: 100,
+    width: WINDOW.width,
+    justifyContent: 'center',
+    //backgroundColor: 'red'
+  },
+  searchInputView: {
+    marginHorizontal: WINDOW.width * 0.1
+  },
+
 });

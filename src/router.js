@@ -5,15 +5,15 @@ import {
   Rank,
   Profile,
   Intro,
-  User
-} from './views';
-import {
+  User,
+  Chat,
+  ChatList,
   GameChoice,
   GameQuestion,
   GameChooseTeam,
   GameMatchPreview,
   GameEnd
-} from './views/game';
+} from './views';
 import {
   RegisterEmail,
   RegisterForm,
@@ -62,11 +62,14 @@ export class MyRouter extends Component {
             swipeEnabled={false}
             animationEnabled={false}
             tabBarPosition="bottom"
-            path={"/tabs"}>
+            >
             <Scene key="home" component={Home} icon={tabIcons[0]}/>
-            <Scene key="chat" component={TestComponent} icon={tabIcons[1]}/>
+            <Stack key="chat-tab" hideNavBar icon={tabIcons[1]}>
+              <Scene key="chat-list" component={ChatList} />
+              <Scene key="chat-main" component={Chat} />
+            </Stack>
             <Scene key="rank" component={Rank} icon={tabIcons[2]} />
-            <Scene key="profile" initial component={Profile} icon={tabIcons[3]}/>
+            <Scene key="profile" component={Profile} icon={tabIcons[3]}/>
           </Tabs>
           <Scene key="login" component={Login} />
           <Scene key="intro" component={Intro} />

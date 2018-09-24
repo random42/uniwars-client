@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from "react-native";
-import {Actions} from "react-native-router-flux";
-import Button from 'react-native-button';
-import PropTypes from 'prop-types';
-import { inject, observer } from 'mobx-react/native';
+import React, {Component} from 'react'
+import {View, Text, StyleSheet} from "react-native"
+import {Actions} from "react-native-router-flux"
+import { Button } from 'react-native-elements'
+import PropTypes from 'prop-types'
+import { inject, observer } from 'mobx-react/native'
 
 @inject('store') @observer
 export class C/*TODO change */ extends Component {

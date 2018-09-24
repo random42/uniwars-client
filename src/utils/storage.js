@@ -1,5 +1,6 @@
+import { SQLite } from 'expo'
 
-
-export default class Storage {
+export class Storage {
+  
 
 }

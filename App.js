@@ -3,7 +3,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar
 } from 'react-native';
 import store from './src/store';
 import {Provider} from 'mobx-react/native';
@@ -15,7 +16,7 @@ require('./src/events')
 console.disableYellowBox = true;
 
 
-type Props = {};
+type Props = {}
 export default class App extends Component<Props> {
   render() {
     return (

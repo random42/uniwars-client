@@ -1,7 +1,7 @@
 import { observable, action, computed, toJS } from 'mobx';
 
 const TEST = {
-  _id : 0,
+  _id : '1',
   username : 'random',
   name : 'Roberto Sero',
   major : 'Computer Science',

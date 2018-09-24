@@ -5,15 +5,5 @@ const SECURE = {
   },
 }
 
-const OTHER = {
-  settings: {
-
-  },
-  chats: [
-    {
-      _id,
-      messages,
-      participants,
-    }
-  ],
+const STORAGE = {
 }
