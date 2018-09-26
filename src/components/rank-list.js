@@ -43,7 +43,7 @@ export class RankList extends Component {
     title: PropTypes.string,
     linkExtractor: PropTypes.func, // (item) => { pageKey, pageProps }
     onEndReached: PropTypes.func, // FlatList prop
-    containerStyle: PropTypes.object
+    containerStyle: View.propTypes.style
   }
 
   static defaultProps = TEST
@@ -71,7 +71,7 @@ export class RankList extends Component {
   }
 
   keyExtractor(item, index) {
-    return item._id
+    return index.toString()
   }
 
   renderTitle() {
