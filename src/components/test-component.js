@@ -11,11 +11,14 @@ const WINDOW = Dimensions.get('window')
 @inject('store') @observer
 export class TestComponent extends Component {
 
+  state = {
+    num: 10
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <RankList
-        />
+        <Text>{this.numero}</Text>
       </View>
     );
   }
@@ -24,7 +27,7 @@ export class TestComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //justifyContent: 'center',
-    //alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });

@@ -107,7 +107,6 @@ export class ChatStore {
     for (let a of testChats) {
       this.newChat(a)
     }
-    console.log(this.chats)
   }
 
   @observable chats = new Map()

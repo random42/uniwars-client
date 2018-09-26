@@ -20,7 +20,7 @@ export class ChatList extends Component {
       <ListItem
         key={item._id}
         onPress={() => {
-          Actions.push('chat-main', {chat: item._id})
+          Actions.push('chat-main', {_id: item._id})
         }}
         leftAvatar={{
           source: {uri: item.picture},

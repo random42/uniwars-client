@@ -7,7 +7,9 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 const PERCENTAGE_PRECISION = 2; // digits after comma
 const WINDOW = Dimensions.get('window');
 
-
+/*
+  Statistiche circolari da scorrere orizzontalmente
+*/
 export class CircularStats extends Component {
 
   constructor(props) {
