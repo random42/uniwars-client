@@ -8,6 +8,10 @@
   "jest": {
     "preset": "jest-expo"
   },
+  "resolutions": {
+    "mobx": "^4.3.0",
+    "mobx-react": "^5.1.2"
+  },
   "private": true,
   "dependencies": {
     "autobind-decorator": "^2.1.0",
