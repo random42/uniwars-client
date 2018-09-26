@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, StyleSheet, FlatList } from "react-native"
 import { TextLink } from './index'
+import { Actions } from 'react-native-router-flux'
 import PropTypes from 'prop-types'
 
 let TEST = {
@@ -51,11 +52,14 @@ export class RankList extends Component {
     const { linkExtractor } = this.props
     let name = <Text style={styles.name}>{item.name}</Text>
     if (linkExtractor) {
+      const route = linkExtractor(item)
+      const onPress = () => Actions.push(route.pageKey, route.pageProps)
       const linkProps = {
+        textStyle: styles.name,
         text: item.name,
-        ...(linkExtractor(item))
+        onPress
       }
-      name = <TextLink textStyle={styles.name} {...linkProps}></TextLink>
+      name = <TextLink  {...linkProps}></TextLink>
     }
     return (
       <View style={styles.rowView}>

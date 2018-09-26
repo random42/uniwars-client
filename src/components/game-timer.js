@@ -87,11 +87,11 @@ export class GameTimer extends Component {
   }
 
   render() {
-    let {time} = this.state;
-    let {initialTime, containerStyle, size} = this.props;
+    const {time} = this.state;
+    const {onPress, initialTime, containerStyle, size} = this.props;
     return (
       <TouchableOpacity
-        onPress={this.props.onPress}
+        onPress={onPress}
         style={containerStyle}
       >
         <AnimatedCircularProgress

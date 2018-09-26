@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, FlatList} from "react-native";
-import {Actions} from "react-native-router-flux";
-import Button from 'react-native-button';
-import { inject, observer } from 'mobx-react/native';
 
-@inject('store') @observer
 export class Slider extends Component {
 
   render() {

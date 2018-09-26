@@ -4,7 +4,7 @@ import { Input, Icon } from 'react-native-elements';
 import Button from 'react-native-button';
 import { inject, observer } from 'mobx-react/native';
 
-@inject('store') @observer
+
 export class MyInput extends Component {
 
   componentDidMount() {
