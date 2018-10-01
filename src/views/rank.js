@@ -4,7 +4,7 @@ import { Actions } from "react-native-router-flux"
 import Button from 'react-native-button'
 import Api from '../api'
 import { inject, observer } from 'mobx-react/native'
-import { RankList, Slider } from '../components'
+import { RankList } from '../components'
 import Carousel from 'react-native-snap-carousel'
 import _ from 'lodash/core'
 

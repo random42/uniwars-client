@@ -7,7 +7,7 @@ export class TextLink extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     onPress: PropTypes.func,
-    textStyle: PropTypes.object,
+    textStyle: Text.propTypes.style,
     disabled: PropTypes.bool
   }
 

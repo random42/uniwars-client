@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`components circular-stats 1`] = `
-<View
-  style={undefined}
-/>
-`;

@@ -1,0 +1,745 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components circular-stats 1`] = `
+<View
+  style={undefined}
+/>
+`;
+
+exports[`components game-header 1`] = `
+<View
+  id="container"
+  style={
+    Array [
+      undefined,
+      Object {
+        "height": 166.75,
+        "minHeight": 166.75,
+      },
+    ]
+  }
+>
+  <View
+    id="avatarLevel"
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 166.75,
+        "justifyContent": "space-between",
+        "marginHorizontal": 10,
+        "position": "absolute",
+        "width": 730,
+        "zIndex": 1,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "transparent",
+              "borderRadius": 66.7,
+              "borderWidth": 1,
+              "height": 133.4,
+              "justifyContent": "center",
+              "width": 133.4,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://avatars2.githubusercontent.com/u/24995370?s=460&v=4",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 66.7,
+              "height": 133.4,
+              "width": 133.4,
+            }
+          }
+        />
+      </View>
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontSize": 26,
+            "fontWeight": "bold",
+            "height": 66.7,
+            "overflow": "hidden",
+            "textAlign": "center",
+            "top": 58.3625,
+            "width": 66.7,
+          },
+          Object {
+            "left": -91.7125,
+          },
+        ]
+      }
+    >
+      8
+    </Text>
+    <View
+      id="vs"
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "black",
+          "borderRadius": 12.5,
+          "height": 25,
+          "justifyContent": "center",
+          "overflow": "hidden",
+          "width": 25,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "white",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        VS
+      </Text>
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontSize": 26,
+            "fontWeight": "bold",
+            "height": 66.7,
+            "overflow": "hidden",
+            "textAlign": "center",
+            "top": 58.3625,
+            "width": 66.7,
+          },
+          Object {
+            "left": 91.7125,
+          },
+        ]
+      }
+    >
+      7
+    </Text>
+    <View>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderColor": "transparent",
+              "borderRadius": 66.7,
+              "borderWidth": 1,
+              "height": 133.4,
+              "justifyContent": "center",
+              "width": 133.4,
+            },
+            undefined,
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://images.everyeye.it/img-notizie/dragon-ball-super-toyotaro-disegna-goku-ultra-istinto-in-versione-manga-v3-329799-1280x720.jpg",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 66.7,
+              "height": 133.4,
+              "width": 133.4,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    id="nameLevel"
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "green",
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 166.75,
+        "justifyContent": "center",
+        "position": "absolute",
+        "width": 750,
+      }
+    }
+  >
+    <View
+      id="leftName"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "white",
+            "borderRadius": 10,
+            "height": 50,
+            "justifyContent": "center",
+            "margin": 3,
+            "width": 150,
+          },
+          Object {
+            "alignItems": "flex-end",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 14,
+              "fontWeight": "400",
+              "marginHorizontal": 15,
+            },
+          ]
+        }
+      >
+        Random
+      </Text>
+    </View>
+    <View
+      id="rightName"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "white",
+            "borderRadius": 10,
+            "height": 50,
+            "justifyContent": "center",
+            "margin": 3,
+            "width": 150,
+          },
+          Object {
+            "alignItems": "flex-start",
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "fontSize": 14,
+              "fontWeight": "400",
+              "marginHorizontal": 15,
+            },
+          ]
+        }
+      >
+        Son Goku
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`components game-timer 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  collapsable={undefined}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <View
+    style={undefined}
+  >
+    <RNSVGSvgView
+      bbHeight="80"
+      bbWidth="80"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "backgroundColor": "transparent",
+          },
+          false,
+          Object {
+            "flex": 0,
+            "height": 80,
+            "width": 80,
+          },
+        ]
+      }
+    >
+      <RNSVGGroup
+        fill={
+          Array [
+            0,
+            0,
+            0,
+            0,
+            1,
+          ]
+        }
+        fillOpacity={1}
+        fillRule={1}
+        font={Object {}}
+        matrix={
+          Array [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+          ]
+        }
+        onLayout={undefined}
+        opacity={1}
+        originX={40}
+        originY={40}
+        propList={Array []}
+        rotation={0}
+        scaleX={1}
+        scaleY={1}
+        skewX={0}
+        skewY={0}
+        stroke={null}
+        strokeDasharray={null}
+        strokeDashoffset={null}
+        strokeLinecap={0}
+        strokeLinejoin={0}
+        strokeMiterlimit={4}
+        strokeOpacity={1}
+        strokeWidth="1"
+        x={0}
+        y={0}
+      >
+        <RNSVGPath
+          d="M 39.97863717136119 6.0000067113307765 A 34 34 0 1 0 40 6"
+          fill={
+            Array [
+              0,
+              0,
+              0,
+              0,
+              0,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          onLayout={undefined}
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={
+            Array [
+              0,
+              0.23921568627450981,
+              0.34509803921568627,
+              0.4588235294117647,
+              1,
+            ]
+          }
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="12"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M 39.97863717136119 6.0000067113307765 A 34 34 0 1 0 40 6"
+          fill={
+            Array [
+              0,
+              0,
+              0,
+              0,
+              0,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          onLayout={undefined}
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={
+            Array [
+              0,
+              0,
+              0.8784313725490196,
+              1,
+              1,
+            ]
+          }
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="12"
+          x={0}
+          y={0}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderRadius": 28,
+          "height": 56,
+          "justifyContent": "center",
+          "left": 12,
+          "position": "absolute",
+          "top": 12,
+          "width": 56,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        10
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`components loading 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={Object {}}
+  >
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "marginLeft": 60,
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <Image
+        collapsable={undefined}
+        resizeMode="contain"
+        source={
+          Object {
+            "uri": "https://www.shareicon.net/data/256x256/2017/07/11/888365_cookie_512x512.png",
+          }
+        }
+        style={
+          Object {
+            "height": 150,
+            "transform": Array [
+              Object {
+                "rotate": "0deg",
+              },
+              Object {
+                "translateY": 5,
+              },
+            ],
+            "width": 150,
+          }
+        }
+      />
+    </View>
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "marginLeft": 0,
+          "marginTop": -100,
+          "transform": Array [
+            Object {
+              "translateY": 0,
+            },
+          ],
+        }
+      }
+    >
+      <Image
+        collapsable={undefined}
+        resizeMode="contain"
+        source={
+          Object {
+            "uri": "https://www.shareicon.net/data/256x256/2016/05/04/759946_bar_512x512.png",
+          }
+        }
+        style={
+          Object {
+            "height": 150,
+            "transform": Array [
+              Object {
+                "rotate": "0deg",
+              },
+              Object {
+                "translateY": 5,
+              },
+            ],
+            "width": 150,
+          }
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`components my-input 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "width": "90%",
+        },
+        Object {},
+      ]
+    }
+  >
+    <View
+      collapsable={undefined}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderBottomWidth": 1,
+          "borderColor": "#86939e",
+          "flexDirection": "row",
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+        }
+      }
+    >
+      <TextInput
+        allowFontScaling={true}
+        placeholder="bye"
+        shake={true}
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "color": "black",
+              "flex": 1,
+              "fontSize": 18,
+              "height": 40,
+              "marginLeft": 10,
+            },
+            undefined,
+          ]
+        }
+        underlineColorAndroid="transparent"
+        valid={undefined}
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "width": 30,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`components rank-list 1`] = `
+<View
+  style={
+    Array [
+      Object {},
+      Object {
+        "flex": 1,
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "alignSelf": "center",
+        "fontSize": 20,
+        "paddingVertical": "5%",
+      }
+    }
+  >
+    Top players
+  </Text>
+</View>
+`;
+
+exports[`components text-link 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  collapsable={undefined}
+  hasTVPreferredFocus={undefined}
+  hitSlop={undefined}
+  isTVSelectable={true}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+  testID={undefined}
+  tvParallaxProperties={undefined}
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "blue",
+          "textDecorationLine": "underline",
+        },
+        Object {
+          "fontSize": 12,
+        },
+      ]
+    }
+  >
+    ciao
+  </Text>
+</View>
+`;

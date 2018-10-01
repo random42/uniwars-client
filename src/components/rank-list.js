@@ -25,6 +25,12 @@ let TEST = {
   title: "Top players",
   onEndReached: () => {
     console.log('onEndReached')
+  },
+  linkExtractor: (item) => {
+    return { pageKey: 'user', pageProps: { _id: item._id } }
+  },
+  containerStyle: {
+    borderWidth: 1
   }
 }
 
@@ -82,7 +88,6 @@ export class RankList extends Component {
   }
 
   render() {
-
     const {
       data,
       onEndReached,

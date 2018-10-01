@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
-const nop = () => {
-}
-
 export class GameTimer extends Component {
 
   static RATIOS = {
@@ -28,17 +25,10 @@ export class GameTimer extends Component {
     initialTime: 10,
     msInterval: 1000,
     startOnMount: true,
-    onTimeEnd: nop,
-    onTimeStart: nop,
-    onPress: nop
   }
 
-  constructor(props) {
-    super(props);
-    this.interval = null;
-    this.state = {
-      time: Math.floor(props.initialTime)
-    }
+  state = {
+    time: Math.floor(this.props.initialTime)
   }
 
   componentDidMount() {
@@ -46,7 +36,12 @@ export class GameTimer extends Component {
   }
 
   start() {
-    this.props.onTimeStart();
+    const {
+      onTimeEnd,
+      msInterval,
+      onTimeStart
+    } = this.props
+    onTimeStart && onTimeStart()
     this.interval = setInterval(() => {
       this.setState((prevState) => {
         let { time } = prevState;
@@ -58,10 +53,10 @@ export class GameTimer extends Component {
         }
       })
       if (this.state.time === 0) {
-        this.stop();
-        this.props.onTimeEnd();
+        this.stop()
+        onTimeEnd && onTimeEnd()
       }
-    }, this.props.msInterval);
+    }, msInterval);
   }
 
   stop() {

@@ -13,9 +13,6 @@ import Avatar from 'react-native-user-avatar';
 //         <Avatar containerStyle={styles.avatar} large rounded source={{uri: goku}}></Avatar>
 //       </View>)
 
-let goku = "https://images.everyeye.it/img-notizie/dragon-ball-super-toyotaro-disegna-goku-ultra-istinto-in-versione-manga-v3-329799-1280x720.jpg"
-let me = "https://avatars2.githubusercontent.com/u/24995370?s=460&v=4"
-
 const WINDOW = Dimensions.get('window');
 const HEIGHT = WINDOW.height / 8
 const WIDTH = WINDOW.width
@@ -23,31 +20,37 @@ const WIDTH = WINDOW.width
 export class GameHeader extends Component {
 
   static propTypes = {
-    users: PropTypes.array
-  }
-
-  static defaultProps = {
-    users: []
+    left: PropTypes.shape({
+      name: PropTypes.string,
+      points: PropTypes.number,
+      picture: PropTypes.string
+    }),
+    right: PropTypes.shape({
+      name: PropTypes.string,
+      points: PropTypes.number,
+      picture: PropTypes.string
+    })
   }
 
   render() {
+    const { left, right } = this.props
     return (
-      <View style={[this.props.containerStyle,styles.container]}>
-        <View style={styles.avatarsLevel}>
-          <Avatar size={HEIGHT * 0.8} name="Roberto Sero" src={me} />
-          <Text style={[styles.point,styles.point0]}>6</Text>
-          <View style={styles.vs}>
+      <View id="container" style={[this.props.containerStyle,styles.container]}>
+        <View id="avatarLevel" style={styles.avatarsLevel}>
+          <Avatar size={HEIGHT * 0.8} name={left.name} src={left.picture} />
+          <Text style={[styles.point, styles.leftPoint]}>{left.points}</Text>
+          <View id="vs" style={styles.vs}>
             <Text style={styles.vsText}>VS</Text>
           </View>
-          <Text style={[styles.point,styles.point1]}>8</Text>
-          <Avatar size={HEIGHT * 0.8} name="Son Goku" src={goku} />
+          <Text style={[styles.point, styles.rightPoint]}>{right.points}</Text>
+          <Avatar size={HEIGHT * 0.8} name={right.name} src={right.picture} />
         </View>
-        <View style={styles.namesLevel}>
-          <View style={[styles.nameView,styles.leftNameView]}>
-            <Text style={[styles.nameText,{marginHorizontal: 15}]}>Roberto Sero</Text>
+        <View id="nameLevel" style={styles.namesLevel}>
+          <View id="leftName" style={[styles.nameView, styles.leftNameView]}>
+            <Text style={[styles.nameText]}>{left.name}</Text>
           </View>
-          <View style={[styles.nameView,styles.rightNameView]}>
-            <Text style={[styles.nameText, {marginHorizontal: 15}]}>Son Goku</Text>
+          <View id="rightName" style={[styles.nameView, styles.rightNameView]}>
+            <Text style={[styles.nameText]}>{right.name}</Text>
           </View>
         </View>
       </View>
@@ -100,7 +103,8 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 14,
-    fontWeight: '400'
+    fontWeight: '400',
+    marginHorizontal: 15,
   },
   vs: {
     backgroundColor: 'black',
@@ -126,10 +130,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     overflow: 'hidden',
   },
-  point0: {
+  leftPoint: {
     left: -(HEIGHT * 0.55)
   },
-  point1: {
+  rightPoint: {
     left: (HEIGHT * 0.55)
   }
 });

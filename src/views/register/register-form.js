@@ -167,10 +167,6 @@ export class RegisterForm extends Component {
     })
   }
 
-  refInputs = (ref,key) => {
-    this.inputs[key] = ref
-  }
-
   majors() {
     let text = this.state.form.major
     let array =  MAJORS.filter(elem => {
@@ -247,7 +243,6 @@ export class RegisterForm extends Component {
       name={key}
       defaultValue={form[key]}
       onFocus={() => this.onInputFocus(key)}
-      inputRef={(ref) => this.refInputs(ref, key)}
       onChangeText={(text) => this.setForm(key, text)}
       maxLength={MAX_LENGTH[key]}
       leftIcon={<Icon {...item.icon} />}
