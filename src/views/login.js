@@ -7,10 +7,7 @@ import { Icon } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
 import StyleSheet from 'react-native-debug-stylesheet';
 import Api from '../api'
-
-//source={require('../../images/wallpaper.jpg')}>
-
-const WINDOW = Dimensions.get('window')
+import { WINDOW } from '../constants'
 const HEIGHT = WINDOW.height
 const WIDTH = WINDOW.width
 

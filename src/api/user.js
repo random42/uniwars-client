@@ -60,6 +60,10 @@ const user = {
   async top() {
 
   },
+
+  async getFriends({ start, end }) {
+    return Promise.resolve([])
+  },
 }
 
 

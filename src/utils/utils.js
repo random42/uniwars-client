@@ -15,8 +15,3 @@ let firstLetterUp = (text) => {
   }
   return newText;
 }
-
-let majors = require('../data/majors.json');
-majors = majors.map(({FOD1P,major,major_category}) => {return {FOD1P,major: firstLetterUp(major),major_category}});
-export const MAJORS = majors;
-export const GAME_QUESTIONS_NUMBER = 5;

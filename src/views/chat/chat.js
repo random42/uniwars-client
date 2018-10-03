@@ -7,8 +7,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import { inject, observer } from 'mobx-react/native';
 import { toJS } from 'mobx';
 import Avatar from 'react-native-user-avatar'
-
-const WINDOW = Dimensions.get('window')
+import { WINDOW } from '../../constants'
 
 @inject('store') @observer
 export class Chat extends Component {
@@ -38,7 +37,7 @@ export class Chat extends Component {
           onPress={() => Actions.pop()}
           size={ICON_SIZE}
           />
-        <TouchableOpacity 
+        <TouchableOpacity
           style={{alignItems: 'center'}}
           onPress={() => null/* TODO Actions.push() */}
           >

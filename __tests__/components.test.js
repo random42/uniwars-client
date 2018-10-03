@@ -8,6 +8,7 @@ import {
   MyInput,
   RankList,
   TextLink,
+  SearchInput
 } from '../src/components'
 
 jest.useFakeTimers()
@@ -149,6 +150,25 @@ describe('components', () => {
     }
     const tree = renderer.create(
       <TextLink {...props} />
+    )
+    .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  test('search-input', () => {
+    const props = {
+      onChangeText: () => 'a',
+      defaultValue: 'asd',
+      placeholder: 'bye',
+      containerStyle: {
+        height: 100,
+        width: 50,
+        borderWidth: 1,
+        borderColor: 'red'
+      }
+    }
+    const tree = renderer.create(
+      <SearchInput {...props} />
     )
     .toJSON()
     expect(tree).toMatchSnapshot()

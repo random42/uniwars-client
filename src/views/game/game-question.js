@@ -3,10 +3,10 @@ import {View, Text, StyleSheet, Dimensions} from "react-native";
 import {Actions} from "react-native-router-flux";
 import Button from 'react-native-button';
 import { GameTimer, GameHeader } from '../../components';
-import { GAME_QUESTIONS_NUMBER } from '../../constants';
 import PropTypes from 'prop-types';
 import _ from 'lodash'
 import Api from '../../api'
+import { WINDOW } from '../../constants'
 
 const TEST = {
   game: "_id",
@@ -20,8 +20,6 @@ const TEST = {
 }
 
 // TODO send answer api
-
-const WINDOW = Dimensions.get('window')
 
 export class GameQuestion extends Component {
 

@@ -4,16 +4,8 @@ import {View, Text, StyleSheet, Dimensions} from "react-native";
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 import Avatar from 'react-native-user-avatar';
+import { WINDOW } from '../constants'
 
-// let before = (      <View style={[this.props.containerStyle,styles.container]}>
-//         <Avatar containerStyle={styles.avatar} large rounded source={{uri: me}}></Avatar>
-//         <Text style={styles.name}>Roberto Sero</Text>
-//         <Text style={styles.vs}>VS</Text>
-//         <Text style={styles.name}>Son Goku</Text>
-//         <Avatar containerStyle={styles.avatar} large rounded source={{uri: goku}}></Avatar>
-//       </View>)
-
-const WINDOW = Dimensions.get('window');
 const HEIGHT = WINDOW.height / 8
 const WIDTH = WINDOW.width
 

@@ -3,10 +3,10 @@ import {View, Text, StyleSheet, Dimensions, FlatList} from "react-native"
 import { Input, Divider, ListItem, Icon } from 'react-native-elements'
 import {Actions} from "react-native-router-flux"
 import PropTypes from 'prop-types'
+import { SearchInput } from '../../components'
 import { inject, observer } from 'mobx-react/native'
 import { toJS } from 'mobx'
 
-const WINDOW = Dimensions.get('window')
 
 @inject('store') @observer
 export class ChatList extends Component {
@@ -51,40 +51,15 @@ export class ChatList extends Component {
     )
   }
 
-  renderSearchInput() {
-    const { search } = this.state
-    const icon = search !== '' ?
-      (<Icon
-        name="cancel"
-        onPress={() => {
-          this.refs.searchInput.clear()
-          this.setState({search: ''})
-        }}
-      />)
-        :
-      (<Icon
-        type="feather"
-        name="search"
-      />)
-    return (
-      <Input
-        ref="searchInput"
-        defaultValue={this.state.search}
-        onChangeText={(text) => {
-          this.setState({search: text.trim()})
-        }}
-        placeholder="Search through chats"
-        containerStyle={styles.searchView}
-        inputContainerStyle={styles.searchInputView}
-        rightIcon={icon}
-      />
-    )
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        {this.renderSearchInput()}
+        <SearchInput
+          defaultValue={this.state.search}
+          onChangeText={(text) => {
+            this.setState({search: text})
+          }}
+          />
         {this.renderList()}
       </View>
     );
@@ -94,15 +69,6 @@ export class ChatList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  searchView: {
-    height: 100,
-    width: WINDOW.width,
-    justifyContent: 'center',
-    //backgroundColor: 'red'
-  },
-  searchInputView: {
-    marginHorizontal: WINDOW.width * 0.1
-  },
+  }
 
 });

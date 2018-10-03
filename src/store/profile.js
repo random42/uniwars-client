@@ -20,6 +20,7 @@ const TEST = {
   settings: {
 
   },
+  friends: ['a','b','c']
 }
 
 export class ProfileStore {

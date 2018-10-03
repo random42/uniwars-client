@@ -7,6 +7,7 @@ import { inject, observer } from 'mobx-react/native'
 import { RankList } from '../components'
 import Carousel from 'react-native-snap-carousel'
 import _ from 'lodash/core'
+import { WINDOW } from '../constants'
 
 const SLIDES = [
    {
@@ -59,7 +60,6 @@ const SLIDES = [
    }
  ]
 const PAGE_LENGTH = 20
-const WINDOW = Dimensions.get('window')
 const SLIDE_WIDTH = 0.7
 
 @inject('store') @observer

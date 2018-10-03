@@ -6,8 +6,7 @@ import { Button } from 'react-native-elements';
 import Carousel from "react-native-carousel-control";
 import { Font } from "expo"
 import Api from "../../api"
-
-const WINDOW = Dimensions.get('window')
+import { WINDOW } from '../../constants'
 const HEIGHT = WINDOW.height
 const WIDTH = WINDOW.width
 

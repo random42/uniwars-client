@@ -6,8 +6,7 @@ import { inject, observer } from 'mobx-react/native';
 import PropTypes from 'prop-types'
 import Avatar from 'react-native-user-avatar';
 import _ from 'lodash/core'
-
-const WINDOW = Dimensions.get('window')
+import { WINDOW } from '../../constants'
 const HEIGHT = WINDOW.height,
 WIDTH = WINDOW.width
 

@@ -5,8 +5,7 @@ import { RankList } from './index';
 import Button from 'react-native-button';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
-
-const WINDOW = Dimensions.get('window')
+import { WINDOW } from '../constants'
 
 @inject('store') @observer
 export class TestComponent extends Component {

@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Dimensions} from "react-native";
 import PropTypes from 'prop-types';
 import Carousel from 'react-native-snap-carousel';
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
-
-const PERCENTAGE_PRECISION = 2; // digits after comma
-const WINDOW = Dimensions.get('window');
+import { AnimatedCircularProgress } from 'react-native-circular-progress'
+import { WINDOW, STATS_PERCENTAGE_PRECISION } from '../constants'
 
 /*
   Statistiche circolari da scorrere orizzontalmente
@@ -47,7 +45,7 @@ export class CircularStats extends Component {
           fill={fill}
           tintColor="#00e0ff"
           backgroundColor="#3d5875"
-        >{(fill) => (<Text>{fill.toFixed(PERCENTAGE_PRECISION)}</Text>)}
+        >{(fill) => (<Text>{fill.toFixed(STATS_PERCENTAGE_PRECISION)}</Text>)}
         </AnimatedCircularProgress>
       </View>
     )

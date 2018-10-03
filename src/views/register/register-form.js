@@ -6,15 +6,24 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react/native'
 import { MyInput } from '../../components'
 import RCButton from 'react-native-button'
-import { MAJORS } from '../../constants'
 import { Input, ListItem, Divider, Button, Icon } from 'react-native-elements';
 import Autocomplete from 'react-native-autocomplete-input';
 import Toast, {DURATION} from 'react-native-easy-toast'
 import Api from '../../api'
+import { WINDOW } from '../../constants'
+
+const MAJORS = [
+  {
+    major: 'A',
+    major_category: 'b',
+  },{
+    major: 'B',
+    major_category: 'a'
+  }
+]
 
 const majorListItemHeight = 70;
-const separatorHeight = 1;
-const WINDOW = Dimensions.get('window')
+const separatorHeight = 1
 const HEIGHT = WINDOW.height
 const WIDTH = WINDOW.width
 const leftIconSize = 30;

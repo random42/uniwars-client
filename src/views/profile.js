@@ -5,8 +5,7 @@ import { List, ListItem, Icon, Divider } from 'react-native-elements'
 import Button from 'react-native-button';
 import Avatar from 'react-native-user-avatar'
 import { inject, observer } from 'mobx-react/native';
-
-const WINDOW = Dimensions.get('window')
+import { WINDOW } from '../constants'
 
 @inject('store') @observer
 export class Profile extends Component {
