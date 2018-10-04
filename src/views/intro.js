@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet } from "react-native";
 import {Actions} from "react-native-router-flux";
 import Swiper from 'react-native-swiper';
-import Translate from '../i18n';
 import { Slide1, Slide2, Slide3 } from './intro-slides';
 import { RegisterType } from './register';
 
