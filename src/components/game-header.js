@@ -9,6 +9,13 @@ import { WINDOW } from '../constants'
 const HEIGHT = WINDOW.height / 8
 const WIDTH = WINDOW.width
 
+
+/**
+  Game header on question page.
+  @reactProps {{name: string, points: number, picture: string}} left Left side
+  @reactProps {{name: string, points: number, picture: string}} right Right side
+*/
+
 export class GameHeader extends Component {
 
   static propTypes = {
@@ -46,7 +53,7 @@ export class GameHeader extends Component {
           </View>
         </View>
       </View>
-    );
+    )
   }
 }
 

@@ -17,8 +17,7 @@ export class Chat extends Component {
     this.chat = this.props.store.chat.getChat(this.props._id)
   }
 
-  static propTypes: {
-    // chat _id
+  static propTypes = {
     _id: PropTypes.string
   }
 

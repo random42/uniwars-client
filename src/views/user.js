@@ -181,7 +181,10 @@ export class User extends Component {
         </View>
         <CircularStats id="stats"
           containerStyle={styles.statsView}
-          stats={user.stats.map((i) => ({name: i.category, hit: i.hit, miss: i.miss}))}
+          data={user.stats.map((i) => ({
+            name: i.category,
+            fill: i.hit / (i.hit + i.miss)
+          }))}
         />
         <View id="options" style={styles.optionsView}>
           {buttons.map(this.renderOption)}

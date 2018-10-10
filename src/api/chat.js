@@ -2,14 +2,14 @@ import store from '../store';
 import axios from 'axios';
 const API = require('../../assets/data/api.json');
 const chat = {
-  async getMessages({chat, time}) {
+  async getMessages(chat, time) {
     let req = API.CHAT.GET_MESSAGES;
     req.params = arguments[0];
     let res = await axios(req);
     return res.data;
   },
 
-  async createGroup({name, participants = []}) {
+  async createGroup(name, participants = []) {
     let req = API.CHAT.CREATE_GROUP;
     req.params = arguments[0];
     let res = await axios(req);
@@ -29,13 +29,13 @@ const chat = {
     let res = await axios(req);
   },
 
-  async addToGroup({chat, invited = []}) {
+  async addToGroup(chat, invited = []) {
     let req = API.CHAT.ADD_USERS;
     req.params = arguments[0];
     let res = await axios(req);
   },
 
-  async removeFromGroup({chat, removed = []}) {
+  async removeFromGroup(chat, removed = []) {
     let req = API.CHAT.REMOVE_USERS;
     req.params = arguments[0];
     let res = await axios(req);

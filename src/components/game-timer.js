@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
+
+/**
+ * Timer with flexible options
+ * @reactProps {number} [size=80] Width and height pixels
+ * @reactProps {number} [initialTime=10]
+ * @reactProps {number} [msInterval=1000] Milliseconds between each decrement
+ * @reactProps {boolean} [startOnMount=true] Should timer start right away?
+ * @reactProps {function} onTimeEnd Handler when time goes to 0
+ * @reactProps {function} onTimeStart Handler when timer starts
+ * @reactProps {function} onPress
+ */
+
 export class GameTimer extends Component {
 
   static RATIOS = {

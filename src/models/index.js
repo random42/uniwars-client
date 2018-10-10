@@ -7,7 +7,7 @@ export {Game} from './game'
 
 import { observable } from 'mobx'
 
-function createCache(_class) {
+export function createCache(_class) {
   let cache = observable(new Map())
   _class.cache = cache
   let _set = cache.set.bind(cache)

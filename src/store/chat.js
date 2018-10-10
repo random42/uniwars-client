@@ -99,7 +99,6 @@ for (let a of testChats) {
   map.set(a._id, a)
 }
 
-//
 
 export class ChatStore {
 

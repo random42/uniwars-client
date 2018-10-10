@@ -1,3 +1,7 @@
+/**
+  @module components
+*/
+
 export {RankList} from './rank-list'
 export {MyInput} from './my-input'
 export {Loading} from './loading'

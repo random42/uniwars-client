@@ -3,6 +3,12 @@ import {View, Text, StyleSheet} from "react-native";
 import PropTypes from 'prop-types';
 import BouncingPreloader from 'react-native-bouncing-preloader';
 
+
+/**
+ * Loading component, for now it's just two bouncing images
+ *
+ */
+
 export class Loading extends Component {
 
   render() {

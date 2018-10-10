@@ -38,6 +38,12 @@ for (let i in [0,1,2,3]) {
   TEST.data = TEST.data.concat(TEST.data)
 }
 
+
+/**
+ * RankList
+ *
+ */
+
 export class RankList extends Component {
 
   static propTypes = {

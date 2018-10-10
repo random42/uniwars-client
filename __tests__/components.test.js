@@ -13,23 +13,20 @@ import {
 
 jest.useFakeTimers()
 
-describe.skip('components', () => {
+describe('components', () => {
 
   test('circular-stats', () => {
     const props = {
-      stats: [
+      data: [
         {
           name: 'a',
-          hit: 12,
-          miss: 12
+          fill: 0.8473
         },{
           name: 'b',
-          hit: 90,
-          miss: 10000
+          fill: 1
         },{
           name: 'c',
-          hit: 20,
-          miss: 10
+          fill: 0
         }
       ]
     }

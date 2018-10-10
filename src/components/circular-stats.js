@@ -5,35 +5,26 @@ import Carousel from 'react-native-snap-carousel';
 import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { WINDOW, STATS_PERCENTAGE_PRECISION } from '../constants'
 
-/*
-  Statistiche circolari da scorrere orizzontalmente
+/**
+  Horizontal carousel with circular percentage fill
+  @reactProps {Array<{name: string, fill: number}>} data Array of statistics
+  @reactProps {number} data[].fill Percentage to show (number between 0 and 1)
 */
 export class CircularStats extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   static propTypes = {
-    stats: PropTypes.arrayOf(PropTypes.shape({
+    data: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
-      hit: PropTypes.number,
-      miss: PropTypes.number
+      fill: PropTypes.number,
     })),
-
   }
 
   static defaultProps = {
-    stats: [],
-  }
-
-  componentDidMount() {
-
+    data: []
   }
 
   renderStat({item, index}) {
-    let fill = (item.hit / (item.hit + item.miss)) * 100;
+    let { fill } = item
     return (
       <View key={item.name}
         style={styles.pageStyle}
@@ -42,7 +33,7 @@ export class CircularStats extends Component {
         <AnimatedCircularProgress
           size={120}
           width={15}
-          fill={fill}
+          fill={fill * 100}
           tintColor="#00e0ff"
           backgroundColor="#3d5875"
         >{(fill) => (<Text>{fill.toFixed(STATS_PERCENTAGE_PRECISION)}</Text>)}

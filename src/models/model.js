@@ -1,9 +1,6 @@
-const SERVER = require('../api/server.json')
 import { observable, extendObservable, action, computed, toJS } from 'mobx'
 
 export class Model {
-
-  static BASE_URL = SERVER.base_url
 
   constructor(obj, options = {
       // these values are never used by default
@@ -44,11 +41,23 @@ export class Model {
   @action.bound loadObject(obj) {
     if (this._observable) {
       extendObservable(this, obj)
-      return this
     }
-    for (let i in obj) {
-      this[i] = obj[i]
+    else {
+      for (let i in obj)
+        this[i] = obj[i]
     }
     return this
+  }
+
+  isObservable() {
+    return this._observable
+  }
+
+  hasProperties(props = []) {
+    for (let item of props) {
+      if (this[item] === undefined)
+        return false
+    }
+    return true
   }
 }

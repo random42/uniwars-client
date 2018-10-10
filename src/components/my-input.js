@@ -1,13 +1,23 @@
 import React, {Component} from 'react';
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 import { Input, Icon } from 'react-native-elements';
 import PropTypes from 'prop-types'
 import Button from 'react-native-button';
 
+
+/**
+ * Custom text input Displays right icon that represents the validity of the input
+ * @reactProps {boolean} valid No icon if undefined
+ * @reactProps ...TextInput props
+ * @reactProps ...Input props
+ */
+
 export class MyInput extends Component {
 
   static propTypes = {
-    valid: PropTypes.bool
+    valid: PropTypes.bool,
+    ...TextInput.propTypes,
+    ...Input.propTypes
   }
 
   componentDidMount() {

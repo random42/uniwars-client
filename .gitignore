@@ -5,4 +5,5 @@ npm-debug.*
 yarn-error.log
 data/*
 yarn.lock
+docs/*
 package-lock.json
