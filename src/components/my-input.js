@@ -8,8 +8,8 @@ import Button from 'react-native-button';
 /**
  * Custom text input Displays right icon that represents the validity of the input
  * @reactProps {boolean} valid No icon if undefined
- * @reactProps ...TextInput props
- * @reactProps ...Input props
+ * @reactProps {Object} ...TextInput.propStyle See react-native docs
+ * @reactProps {Object} ...Input.propStyle See 'react-native-elements'
  */
 
 export class MyInput extends Component {

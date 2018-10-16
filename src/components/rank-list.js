@@ -23,12 +23,13 @@ let TEST = {
     }
   ],
   title: "Top players",
+  titleStyle: {
+
+  },
   onEndReached: () => {
     console.log('onEndReached')
   },
-  linkExtractor: (item) => {
-    return { pageKey: 'user', pageProps: { _id: item._id } }
-  },
+  onPressItem: (item, index, arr) => Actions.push('user', { _id: item._id}),
   containerStyle: {
     borderWidth: 1
   }
@@ -40,7 +41,24 @@ for (let i in [0,1,2,3]) {
 
 
 /**
- * RankList
+ * Shows index, name and rating of some data with rating on the far right.
+ * If onPressName is passed, {@link TextLink} will be used for name text and
+ * thus it will be underlined.
+ *
+ * |-1--Name------1234|
+ *
+ * |-1--Name------1234|
+ *
+ * |-1--Name------1234|
+ *
+ * |-1--Name------1234|
+ *
+ * @reactProps {Object} containerStyle
+ * @reactProps {Array<{_id: string, name: string, rating: number}>} data
+ * @reactProps {string} title
+ * @reactProps {Object} titleStyle
+ * @reactProps {function(item : Object, index : number)} onPressName
+ * @reactProps {function} onEndReached Usually to load other data
  *
  */
 
@@ -53,7 +71,7 @@ export class RankList extends Component {
       rating: PropTypes.number
     })),
     title: PropTypes.string,
-    linkExtractor: PropTypes.func, // (item) => { pageKey, pageProps }
+    onPressName: PropTypes.func, // (item) => { pageKey, pageProps }
     onEndReached: PropTypes.func, // FlatList prop
     containerStyle: View.propTypes.style
   }
@@ -61,15 +79,13 @@ export class RankList extends Component {
   static defaultProps = TEST
 
   renderRow = ({item, index}) => {
-    const { linkExtractor } = this.props
+    const { onPressName } = this.props
     let name = <Text style={styles.name}>{item.name}</Text>
-    if (linkExtractor) {
-      const route = linkExtractor(item)
-      const onPress = () => Actions.push(route.pageKey, route.pageProps)
+    if (onPressName) {
       const linkProps = {
         textStyle: styles.name,
         text: item.name,
-        onPress
+        onPress: () => onPressName(item, index)
       }
       name = <TextLink  {...linkProps}></TextLink>
     }
@@ -82,14 +98,10 @@ export class RankList extends Component {
     )
   }
 
-  keyExtractor(item, index) {
-    return index.toString()
-  }
-
   renderTitle() {
-    const { title } = this.props
+    const { title, title } = this.props
     return (
-      <Text style={styles.title}>{title}</Text>
+      <Text style={[styles.title,]}>{title}</Text>
     )
   }
 

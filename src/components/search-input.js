@@ -4,6 +4,15 @@ import { Input, Icon } from 'react-native-elements'
 import PropTypes from 'prop-types'
 import { WINDOW } from '../constants'
 
+
+/**
+ * Input with search icon on the right that becomes
+ * an X that clears input on press.
+ * 
+ * @reactProps {Object} ...Input.propTypes see 'react-native-elements' Input
+ * @reactProps {function(text: string)} onChangeText Main one to know e.e
+ */
+
 export class SearchInput extends Component {
 
   static propTypes = Input.propTypes

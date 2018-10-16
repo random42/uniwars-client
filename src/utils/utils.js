@@ -1,4 +1,4 @@
-let firstLetterUp = (text) => {
+const upperCaseFirstLetterOfEachWord = (text) => {
   let newText = '';
   let i = 0;
   while (i < text.length) {

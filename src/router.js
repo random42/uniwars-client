@@ -17,7 +17,6 @@ import {
 import {
   RegisterEmail,
   RegisterForm,
-  RegisterType
 } from './views/register';
 import {
   Scene,
@@ -34,24 +33,26 @@ import {
 } from 'react-native-router-flux';
 import { Icon } from 'react-native-elements';
 import { inject } from 'mobx-react/native';
-import {TestComponent} from './components';
+import {TestComponent, LoadingView } from './components';
 
+
+/**
+ * MyRouter
+ *
+ */
 @inject('store')
 export class MyRouter extends Component {
 
-  changeRankTab = ({jumpToIndex, scene}) => {
-    this.props.store.rank.setActive(scene.route.key.split('-')[1]);
-    jumpToIndex(scene.index);
-  }
-
-  render() {
-    const tabIconsName = [{type: 'ionicon', name: 'ios-home'},
+  static TAB_ICONS = [
+    {type: 'ionicon', name: 'ios-home'},
     {type: 'ionicon', name: 'md-chatboxes'},
     {type: 'ionicon', name: 'ios-list'},
-    {type: 'ionicon', name: 'ios-person'}];
-    const tabIcons = tabIconsName.map((el) => {
+    {type: 'ionicon', name: 'ios-person'}
+  ]
+  render() {
+    const tabIcons = MyRouter.TAB_ICONS.map((el) => {
       return () => (<Icon {...el} size={30}/>);
-    });
+    })
 
     return (
       <Router>
@@ -78,7 +79,6 @@ export class MyRouter extends Component {
           <Stack key="register" hideNavBar>
             <Scene key="register-email" component={RegisterEmail}/>
             <Scene key="register-form" component={RegisterForm} />
-            <Scene key="register-type" component={RegisterType}/>
           </Stack>
           <Stack key="game" hideNavBar>
             <Scene key="game-choice" component={GameChoice} />

@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react/native';
 import { WINDOW } from '../constants'
 
+
+/**
+ * Just a test component put in {@link MyRouter} with 'test' key.
+ */
 @inject('store') @observer
 export class TestComponent extends Component {
 
