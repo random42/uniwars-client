@@ -99,7 +99,7 @@ export class RankList extends Component {
   }
 
   renderTitle() {
-    const { title, title } = this.props
+    const { title } = this.props
     return (
       <Text style={[styles.title,]}>{title}</Text>
     )

@@ -60,15 +60,14 @@ export class MyRouter extends Component {
         <Scene key="root" hideNavBar path="/">
           <Scene key="test" component={TestComponent} />
           <Tabs key="tabs"
-            initial
             wrap={false}
             swipeEnabled={false}
             animationEnabled={false}
             tabBarPosition="bottom"
             >
             <Scene key="home" component={Home} icon={tabIcons[0]}/>
-            <Stack key="chat-tab" initial hideNavBar icon={tabIcons[1]}>
-              <Scene key="chat-list" initial component={ChatList} />
+            <Stack key="chat-tab" hideNavBar icon={tabIcons[1]}>
+              <Scene key="chat-list" component={ChatList} />
               <Scene key="chat-main" component={Chat} />
             </Stack>
             <Scene key="rank" component={Rank} icon={tabIcons[2]} />
@@ -80,7 +79,7 @@ export class MyRouter extends Component {
             <Scene key="register-email" component={RegisterEmail}/>
             <Scene key="register-form" component={RegisterForm} />
           </Stack>
-          <Stack key="game" hideNavBar>
+          <Stack key="game" initial hideNavBar>
             <Scene key="game-choice" component={GameChoice} />
             <Scene key="game-choose-team" component={GameChooseTeam} />
             <Scene key="game-match-preview" component={GameMatchPreview} />

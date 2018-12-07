@@ -224,7 +224,7 @@ export class RegisterForm extends Component {
     this.setState({focus: key})
   }
 
-  renderSearchItem({item,index}) => {
+  renderSearchItem =  ({item,index})=> {
     return (<ListItem
       {...item}
       onPress={() => {
@@ -234,11 +234,11 @@ export class RegisterForm extends Component {
     />);
   }
 
-  renderSearchItemSeparator() => {
+  renderSearchItemSeparator = () => {
     return (<Divider/>)
   }
 
-  renderInput(item,index) => {
+  renderInput = (item,index) => {
     let { key } = item
     let { form } = this.state
     let validForm = this.isFormValid()
